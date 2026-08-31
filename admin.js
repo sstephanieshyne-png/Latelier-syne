@@ -33,6 +33,7 @@ if(file){
 let r=new FileReader();
 r.onload=()=>{localStorage.shopLogo=r.result;document.getElementById('logoPreview').src=r.result;alert('Saved')};
 r.readAsDataURL(file);
+localStorage.setItem("owner","true");
 }else alert('Saved');
 }
 

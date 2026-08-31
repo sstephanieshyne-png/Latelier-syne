@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L’Atelier Syne</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<img id="logo" src="assets/logo.png">
+<h1 id="shopName">L’Atelier Syne</h1>
+<a href="admin.html">Owner Dashboard</a>
+</header>
+
+<section class="hero">
+<div class="glass">
+<h2 id="tagline">Flowers made for your sweetest moments.</h2>
+<p>Ready-made creations and customized floral gifts.</p>
+</div>
+</section>
+
+<section>
+<h2>Ready-Made Collection</h2>
+<div id="products" class="grid"></div>
+</section>
+
+<section class="custom">
+<h2>Customize Your Bouquet 🌸</h2>
+<select id="flower"><option>Rose</option><option>Tulip</option><option>Mixed Flowers</option></select>
+<select id="color"><option>Pink</option><option>Lavender</option><option>White</option></select>
+<select id="wrapper"><option>Korean Wrap</option><option>Kraft Wrap</option><option>Lace Wrap</option></select>
+<textarea id="message" placeholder="Customer message"></textarea>
+<button onclick="preview()">Preview Request</button>
+<div id="customPreview"></div>
+</section>
+
+<section>
+<h2>Order Details</h2>
+<input id="customer" placeholder="Full Name">
+<input id="phone" placeholder="Contact Number">
+<input id="address" placeholder="Address">
+
+<label>Payment Method</label>
+<select id="paymentMethod">
+<option>GCash</option>
+<option>Cash on Delivery</option>
+<option>Bank Transfer</option>
+<option>Meet-up Payment</option>
+</select>
+
+<textarea id="notes" placeholder="Order Notes"></textarea>
+<button onclick="submitOrder()">Submit Order</button>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>

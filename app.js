@@ -1,4 +1,4 @@
-let products=[];
+let products = [];
 
 let box=document.getElementById('products');
 products.forEach(p=>{

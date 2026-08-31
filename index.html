@@ -10,7 +10,7 @@
 <header>
 <img id="logo" src="logo.png">
 <h1 id="shopName">L’Atelier Syne</h1>
-<a id="ownerlink" href="admin.html" style="display:none;">Owner Dashboard</a>
+<a id="ownerLink" href="admin.html" style="display:none;">Owner Dashboard</a>
 </header>
 
 <section class="hero">
@@ -56,6 +56,6 @@
 window.onload=function(){
 if (localStorage.getItem("owner") !== "true") {document.getElementById("ownerLink").style.display = "none";}
 </script>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>

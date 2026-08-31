@@ -53,6 +53,7 @@
 <button onclick="submitOrder()">Submit Order</button>
 </section>
 <script>
+window.onload=function(){
 if (localStorage.getItem("owner") !== "true") {document.getElementById("ownerLink").style.display = "none";}
 </script>
 <script src="app.js"></script>

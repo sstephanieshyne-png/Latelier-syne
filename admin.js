@@ -117,3 +117,10 @@ function addWrapper(){if(newWrapper.value){options.wrappers.push(newWrapper.valu
 function addAddon(){if(newAddon.value){options.addons.push(newAddon.value);saveOptions();newAddon.value='';}}
 function showOptions(){colors.innerHTML=options.colors.join(', ');wrappers.innerHTML=options.wrappers.join(', ');addons.innerHTML=options.addons.join(', ');}
 showOptions();
+window.addProduct = addProduct;
+window.showProducts = showProducts;
+window.deleteProduct = deleteProduct;
+window.saveSettings = saveSettings;
+window.addColor = addColor;
+window.addWrapper = addWrapper;
+window.addAddon = addAddon;

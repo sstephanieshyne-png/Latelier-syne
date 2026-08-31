@@ -17,16 +17,48 @@ const db = getFirestore(app)
 let orders=JSON.parse(localStorage.orders||'[]');
 
 async function addProduct(){
+
 let name = document.getElementById('name').value;
 let price = Number(document.getElementById('price').value);
 let desc = document.getElementById('desc').value;
-  await addDoc(collection(db,"products"),{
-    name:name,
-    price:price,
-    desc:desc
-});
-  alert("Product Added");
-  showProducts();
+
+let file = document.getElementById('photo').files[0];
+
+let image = "";
+
+if(file){
+    let reader = new FileReader();
+
+    reader.onload = async function(){
+        image = reader.result;
+
+        await addDoc(collection(db,"products"),{
+            name:name,
+            price:price,
+            desc:desc,
+            image:image
+        });
+
+        alert("Product Added");
+        showProducts();
+    }
+
+    reader.readAsDataURL(file);
+
+}else{
+
+    await addDoc(collection(db,"products"),{
+        name:name,
+        price:price,
+        desc:desc,
+        image:""
+    });
+
+    alert("Product Added");
+    showProducts();
+
+}
+
 }
 
 function deleteProduct(i){

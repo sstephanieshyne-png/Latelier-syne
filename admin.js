@@ -1,15 +1,32 @@
 let products=JSON.parse(localStorage.products||'[]');
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
+  authDomain: "latelier-syne.firebaseapp.com",
+  projectId: "latelier-syne",
+  storageBucket: "latelier-syne.firebasestorage.app",
+  messagingSenderId: "785009872575",
+  appId: "1:785009872575:web:cb2b2ac9dd51fe823b800a",
+  measurementId: "G-PVBCNJTSTW"
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
+
 let orders=JSON.parse(localStorage.orders||'[]');
 
-function addProduct(){
-let f=document.getElementById('photo').files[0];
-let save=(img)=>{
-products.push({name:document.getElementById('name').value,price:Number(document.getElementById('price').value),desc:document.getElementById('desc').value,image:img});
-localStorage.products=JSON.stringify(products);
-showProducts();
-};
-if(f){let r=new FileReader();r.onload=()=>save(r.result);r.readAsDataURL(f)}
-else save('');
+async function addProduct(){
+let name = document.getElementById('name').value;
+let price = Number(document.getElementById('price').value);
+let desc = document.getElementById('desc').value;
+  await addDoc(collection(db,"products"),{
+    name:name,
+    price:price,
+    desc:desc
+});
+  alert("Product Added");
+  showProducts();
 }
 
 function deleteProduct(i){

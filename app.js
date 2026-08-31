@@ -1,8 +1,4 @@
-let products=JSON.parse(localStorage.products||'null')||[
-{name:'Sweet Pink Bouquet',price:499,desc:'Soft pink bouquet',image:''},
-{name:'Lavender Dream Bouquet',price:599,desc:'Elegant lavender arrangement',image:''},
-{name:'Korean Minimalist Bouquet',price:699,desc:'Premium Korean style bouquet',image:''}
-];
+let products=[];
 
 let box=document.getElementById('products');
 products.forEach(p=>{

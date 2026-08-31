@@ -56,7 +56,6 @@ if(file){
 
     alert("Product Added");
     showProducts();
-
 }
 
 }

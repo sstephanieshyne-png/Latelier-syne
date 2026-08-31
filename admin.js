@@ -1,4 +1,4 @@
-let products=getDocs(collection(db,"pronounce"));
+let products=[];
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const firebaseConfig = {
@@ -66,10 +66,29 @@ localStorage.products=JSON.stringify(products);
 showProducts();
 }
 
-function showProducts(){
-document.getElementById('productList').innerHTML=products.map((p,i)=>
-`<div class="card">${p.image?'<img src="'+p.image+'">':''}<h3>${p.name}</h3><p>₱${p.price}</p><button onclick="deleteProduct(${i})">Delete</button></div>`
+async function showProducts(){
+
+let snap = await getDocs(collection(db,"products"));
+
+products=[];
+
+snap.forEach((doc)=>{
+products.push(doc.data());
+});
+
+document.getElementById('productList').innerHTML =
+products.map((p,i)=>
+
+`<div class="card">
+${p.image ? '<img src="'+p.image+'">' : ''}
+<h3>${p.name}</h3>
+<p>₱${p.price}</p>
+<p>${p.desc}</p>
+<button onclick="deleteProduct(${i})">Delete</button>
+</div>`
+
 ).join('');
+
 }
 
 function saveSettings(){

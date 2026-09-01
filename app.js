@@ -178,4 +178,4 @@ window.submitOrder = submitOrder;
 window.showCart = showCart;
 window.removeCart = removeCart;
 window.trackOrder = trackOrder;
-}
+

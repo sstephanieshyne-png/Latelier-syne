@@ -104,9 +104,32 @@ localStorage.setItem("owner","true");
 }else alert('Saved');
 }
 
-document.getElementById('orderList').innerHTML=orders.map(o=>
-`<div class="card"><b>${o.customer}</b><br>${o.phone}<br>${o.address}<br>${o.notes}</div>`
+async function showOrders(){
+
+let snap = await getDocs(collection(db,"orders"));
+
+orders=[];
+
+snap.forEach((doc)=>{
+orders.push(doc.data());
+});
+
+
+document.getElementById('orderList').innerHTML =
+orders.map(o=>
+
+`<div class="card">
+<b>${o.customer}</b><br>
+${o.phone}<br>
+${o.address}<br>
+${o.notes}
+</div>`
+
 ).join('');
+
+}
+
+showOrders();
 showProducts();
 
 

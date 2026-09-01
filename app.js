@@ -42,8 +42,26 @@ loadProducts();
 
 
 function preview(){
-document.getElementById('customPreview').innerHTML=
-`🌸 ${flower.value}<br>🎨 ${color.value}<br>🎀 ${wrapper.value}<br>💌 ${message.value}`;
+
+    const customData = {
+        name: "Custom Bouquet",
+        flower: flower.value,
+        color: color.value,
+        wrapper: wrapper.value,
+        message: message.value,
+        price: "To be confirmed"
+    };
+
+    window.customBouquet = customData;
+
+    document.getElementById('customPreview').innerHTML =
+    `
+    🌸 ${customData.flower}<br>
+    🎨 ${customData.color}<br>
+    🎀 ${customData.wrapper}<br>
+    💌 ${customData.message}
+    `;
+
 }
 
 

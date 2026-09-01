@@ -75,13 +75,18 @@ Check Order Status
 window.onload=function(){
 if (localStorage.getItem("owner") !== "true") {document.getElementById("ownerLink").style.display = "none";}
 </script>
-<div class="petals">
+<div class="petals" id="petals">
 <span>🌸</span>
 <span>🌷</span>
 <span>🌸</span>
 <span>🌺</span>
 <span>🌸</span>
 </div>
+<script>
+setTimeout(()=>{
+  document.getElementById("petals").remove();
+},5000
+           </script>
 <script type="module" src="app.js"></script>
 </body>
 </html>

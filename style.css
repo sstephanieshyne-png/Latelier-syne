@@ -141,3 +141,39 @@ input,textarea,select{
     pointer-events:none;
     z-index:999;
 }
+.flowerCircle{
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:#f8e3eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 20px 40px #0002;
+}
+
+.flowerCircle img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+@media(max-width:768px){
+
+.hero{
+    flex-direction:column;
+    padding:40px 25px;
+}
+
+.heroText h2{
+    font-size:38px;
+}
+
+.flowerCircle{
+    width:240px;
+    height:240px;
+}
+
+}

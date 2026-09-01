@@ -57,6 +57,20 @@
 <textarea id="notes" placeholder="Order Notes"></textarea>
 <button onclick="submitOrder()">Submit Order</button>
 </section>
+  <!-- #2 TRACK ORDER SECTION -->
+<section>
+<h2>Track Your Order 🌸</h2>
+
+<input id="trackPhone" placeholder="Enter Contact Number">
+
+<button onclick="trackOrder()">
+Check Order Status
+</button>
+
+<div id="trackResult"></div>
+
+</section>
+  
 <script>
 window.onload=function(){
 if (localStorage.getItem("owner") !== "true") {document.getElementById("ownerLink").style.display = "none";}

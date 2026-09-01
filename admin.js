@@ -124,9 +124,9 @@ orders.map(o=>
 ${o.phone}<br>
 ${o.address}<br>
 <h4>Order:</h4>
-${o.items.map(item => `
+${o.items ? o.items.map(item => `
 <p>🌸 ${item.name} - ₱${item.price}</p>
-`).join("")}
+`).join("") : ""}
 ${o.notes}
 </div>`
 

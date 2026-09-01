@@ -73,7 +73,12 @@ let snap = await getDocs(collection(db,"products"));
 products=[];
 
 snap.forEach((doc)=>{
-products.push(doc.data());
+products.push({
+
+    id: doc.id,
+
+    ...doc.data()
+
 });
 
 document.getElementById('productList').innerHTML =
@@ -151,3 +156,10 @@ window.saveSettings = saveSettings;
 window.addColor = addColor;
 window.addWrapper = addWrapper;
 window.addAddon = addAddon;
+async function deleteProduct(id){
+await deleteDoc(doc(db,"products",id));
+alert("Product deleted!");
+showProducts();
+}
+
+window.deleteProduct = deleteProduct;

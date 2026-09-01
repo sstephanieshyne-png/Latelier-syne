@@ -122,6 +122,10 @@ orders.map(o=>
 <b>${o.customer}</b><br>
 ${o.phone}<br>
 ${o.address}<br>
+<h4>Order:</h4>
+${o.items.map(item => `
+<p>🌸 ${item.name} - ₱${item.price}</p>
+`).join("")}
 ${o.notes}
 </div>`
 

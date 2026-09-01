@@ -6,7 +6,8 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
-  doc
+  doc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
@@ -144,7 +145,7 @@ async function showOrders(){
 
 
     const order = item.data();
-
+    const orderId = item.id;
 
     let orderedItems = "";
 
@@ -179,7 +180,13 @@ async function showOrders(){
 
 
       <p>${order.notes || ""}</p>
+      <p>
+      Status: ${order.status || "Pending"}
+      <p>
 
+      <button onclick="completeOrder('${orderId}')">
+      Mark as Done
+      </button>
 
     </div>
 
@@ -192,8 +199,13 @@ async function showOrders(){
 }
 
 
-
-
+window.completeOrder = async function(id){
+  await updateDoc(doc(db,"orders",id),{
+status:"Completed"
+ });
+  alert("Order completed!");
+  showOrders();
+ }; 
 // LOAD DATA
 
 showProducts();

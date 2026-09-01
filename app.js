@@ -30,7 +30,7 @@ async function loadProducts(){
       <h3>${p.name}</h3>
       <div class="price">₱${p.price}</div>
       <p>${p.desc}</p>
-      <button>Add to Cart</button>
+      <button onclick='addToCart(${JSON.stringify(p)})'>Add to Cart</button>
     </div>
     `;
 
@@ -68,3 +68,14 @@ function getPaymentMethod(){
 const payment = document.getElementById('paymentMethod');
 return payment ? payment.value : '';
 }
+let cart = JSON.parse(localStorage.cart || "[]");
+
+function addToCart(product){
+    cart.push(product);
+    localStorage.cart = JSON.stringify(cart);
+    alert(product.name + " added to cart!");
+}
+
+window.addToCart = addToCart;
+window.preview = preview;
+window.submitOrder = submitOrder;

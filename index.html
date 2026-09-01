@@ -7,17 +7,42 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
+<header class="navbar">
 <img id="logo" src="logo.png">
+
+<div>
 <h1 id="shopName">L’Atelier Syne</h1>
-<a id="ownerLink" href="admin.html" style="display:none;">Owner Dashboard</a>
+<p class="subtitle">Luxury Floral Studio</p>
+</div>
+
+<a id="ownerLink" href="admin.html" style="display:none;">
+Owner Dashboard
+</a>
 </header>
 
 <section class="hero">
-<div class="glass">
-<h2 id="tagline">Flowers made for your sweetest moments.</h2>
-<p>Ready-made creations and customized floral gifts.</p>
+
+<div class="heroText">
+<h2 id="tagline">
+Flowers made for your sweetest moments.
+</h2>
+
+<p>
+Elegant floral arrangements crafted with love and care.
+</p>
+
+<button onclick="document.getElementById('products').scrollIntoView()">
+Shop Collection
+</button>
+
 </div>
+
+<div class="heroImage">
+<div class="flowerPlaceholder">
+🌸
+</div>
+</div>
+
 </section>
 <h2>Ready-Made Collection</h2>
 <div id="products" class="grid"></div>
@@ -75,7 +100,7 @@ Check Order Status
 window.onload=function(){
 if (localStorage.getItem("owner") !== "true") {document.getElementById("ownerLink").style.display = "none";}
 </script>
-<div class="petals" id="petals">
+<div class="petals" id="petals"></div>
 <span>🌸</span>
 <span>🌷</span>
 <span>🌸</span>

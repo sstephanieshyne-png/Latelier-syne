@@ -184,9 +184,12 @@ async function showOrders(){
       Status: ${order.status || "Pending"}
       <p>
 
-      <button onclick="completeOrder('${orderId}')">
-      Mark as Done
-      </button>
+      <select onchange="updateStatus('${orderId}', this.value)">
+<option value="Pending">Pending</option>
+<option value="Preparing">Preparing</option>
+<option value="Ready for Delivery">Ready for Delivery</option>
+<option value="Completed">Completed</option>
+</select>
 
     </div>
 
@@ -199,11 +202,13 @@ async function showOrders(){
 }
 
 
-window.completeOrder = async function(id){
-  await updateDoc(doc(db,"orders",id),{
-status:"Completed"
- });
-  alert("Order completed!");
+window.updateStatus = async function(id,status){
+
+await updateDoc(doc(db,"orders",id),{
+status: status
+});
+
+alert("Status updated!");
   showOrders();
  }; 
 // LOAD DATA

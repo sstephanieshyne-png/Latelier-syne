@@ -134,8 +134,6 @@ ${o.notes}
 
 }
 
-showOrders();
-showProducts();
 
 
 let options=JSON.parse(localStorage.options||'{"colors":["Pink","Lavender","White"],"wrappers":["Korean Wrap","Kraft Wrap"],"addons":["Chocolate","Message Card"]}');
@@ -147,7 +145,7 @@ function showOptions(){colors.innerHTML=options.colors.join(', ');wrappers.inner
 showOptions();
 window.addProduct = addProduct;
 window.showProducts = showProducts;
-window.deleteProduct = deleteProduct;
+
 window.saveSettings = saveSettings;
 window.addColor = addColor;
 window.addWrapper = addWrapper;
@@ -159,3 +157,6 @@ showProducts();
 }
 
 window.deleteProduct = deleteProduct;
+showOrders();
+
+showProducts();

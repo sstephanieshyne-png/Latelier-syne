@@ -123,9 +123,57 @@ localStorage.cart = JSON.stringify(cart);
 showCart();
 
 }
+async function trackOrder(){
+
+    let phoneNumber = document.getElementById("trackPhone").value;
+
+    let result = document.getElementById("trackResult");
+
+    if(!phoneNumber){
+
+        result.innerHTML = "Please enter your contact number.";
+
+        return;
+
+    }
+
+    const snapshot = await getDocs(collection(db,"orders"));
+
+    let found = false;
+
+    snapshot.forEach((doc)=>{
+
+        let order = doc.data();
+
+        if(order.phone === phoneNumber){
+
+            found = true;
+
+            result.innerHTML = `
+
+            <h3>Order Found 🌸</h3>
+
+            <p>Name: ${order.customer}</p>
+
+            <p>Date: ${order.date}</p>
+
+            <p>Status: Processing</p>
+
+            `;
+
+        }
+
+    });
+
+    if(!found){
+
+        result.innerHTML = "No order found.";
+
+    }
+
 window.addToCart = addToCart;
 window.preview = preview;
 window.submitOrder = submitOrder;
-
 window.showCart = showCart;
 window.removeCart = removeCart;
+window.trackOrder = trackOrder;

@@ -1,7 +1,15 @@
-let products = [];
-console.log("ADMIN JS LOADED");
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
   authDomain: "latelier-syne.firebaseapp.com",
@@ -11,154 +19,182 @@ const firebaseConfig = {
   appId: "1:785009872575:web:cb2b2ac9dd51fe823b800a",
   measurementId: "G-PVBCNJTSTW"
 };
-// Initialize Firebase
+
+
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
-
-let orders = [];
-
-async function addProduct(){
-
-let name = document.getElementById('name').value;
-let price = Number(document.getElementById('price').value);
-let desc = document.getElementById('desc').value;
-
-let file = document.getElementById('photo').files[0];
-
-let image = "";
-
-if(file){
-    let reader = new FileReader();
-
-    reader.onload = async function(){
-        image = reader.result;
-
-        await addDoc(collection(db,"products"),{
-            name:name,
-            price:price,
-            desc:desc,
-            image:image
-        });
-
-        alert("Product Added");
-        showProducts();
-    }
-
-    reader.readAsDataURL(file);
-
-}else{
-
-    await addDoc(collection(db,"products"),{
-        name:name,
-        price:price,
-        desc:desc,
-        image:""
-    });
-
-    alert("Product Added");
-    showProducts();
-}
-
-}
+const db = getFirestore(app);
 
 
+// ======================
+// ADD PRODUCT
+// ======================
+
+window.addProduct = async function(){
+
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
+  const desc = document.getElementById("desc").value;
+
+
+  if(!name || !price){
+    alert("Please complete product details");
+    return;
+  }
+
+
+  await addDoc(collection(db,"products"),{
+
+    name:name,
+    price:Number(price),
+    desc:desc
+
+  });
+
+
+  alert("Product Added!");
+
+  document.getElementById("name").value="";
+  document.getElementById("price").value="";
+  document.getElementById("desc").value="";
+
+
+  showProducts();
+
+};
+
+
+
+// ======================
+// SHOW PRODUCTS
+// ======================
 
 async function showProducts(){
 
-let snap = await getDocs(collection(db,"products"));
+  const productList = document.getElementById("productList");
 
-products=[];
+  productList.innerHTML="";
 
-snap.forEach((doc)=>{
-products.push({
 
-    id: doc.id,
+  const snapshot = await getDocs(collection(db,"products"));
 
-    ...doc.data()
 
-});
+  snapshot.forEach((item)=>{
 
-document.getElementById('productList').innerHTML =
-products.map((p,i)=>
+    const product = item.data();
 
-`<div class="card">
-${p.image ? '<img src="'+p.image+'">' : ''}
-<h3>${p.name}</h3>
-<p>₱${p.price}</p>
-<p>${p.desc}</p>
-<button onclick="deleteProduct('${p.id}')">Delete</button>
-</div>`
 
-).join('');
+    productList.innerHTML += `
+
+    <div class="card">
+
+      <h3>${product.name}</h3>
+
+      <p>₱${product.price}</p>
+
+      <p>${product.desc || ""}</p>
+
+
+      <button onclick="deleteProduct('${item.id}')">
+      Delete
+      </button>
+
+
+    </div>
+
+    `;
+
+
+  });
+
 
 }
 
-function saveSettings(){
-localStorage.settings=JSON.stringify({
-shop:shop.value,tag:tag.value,fb:fb.value,contact:contact.value
-});
-let file=document.getElementById('logoUpload').files[0];
-if(file){
-let r=new FileReader();
-r.onload=()=>{localStorage.shopLogo=r.result;document.getElementById('logoPreview').src=r.result;alert('Saved')};
-r.readAsDataURL(file);
-localStorage.setItem("owner","true");
-}else alert('Saved');
-}
+
+
+
+window.deleteProduct = async function(id){
+
+  await deleteDoc(doc(db,"products",id));
+
+  alert("Product Deleted!");
+
+  showProducts();
+
+};
+
+
+
+
+// ======================
+// SHOW ORDERS
+// ======================
+
 
 async function showOrders(){
 
-let snap = await getDocs(collection(db,"orders"));
+  const orderList = document.getElementById("orderList");
 
-orders=[];
-
-snap.forEach((doc)=>{
-orders.push(doc.data());
-});
+  orderList.innerHTML="";
 
 
-document.getElementById('orderList').innerHTML =
-orders.map(o=>
+  const snapshot = await getDocs(collection(db,"orders"));
 
-`<div class="card">
-<b>${o.customer}</b><br>
-${o.phone}<br>
-${o.address}<br>
-<h4>Order:</h4>
-${o.items ? o.items.map(item => `
-<p>🌸 ${item.name} - ₱${item.price}</p>
-`).join("") : ""}
-${o.notes}
-</div>`
 
-).join('');
+  snapshot.forEach((item)=>{
+
+
+    const order = item.data();
+
+
+    let orderedItems = "";
+
+
+    if(order.items){
+
+      order.items.forEach(product=>{
+
+        orderedItems += `
+        🌸 ${product.name} - ₱${product.price}<br>
+        `;
+
+      });
+
+    }
+
+
+    orderList.innerHTML += `
+
+    <div class="card">
+
+      <h3>${order.customer || ""}</h3>
+
+      Phone: ${order.phone || ""}<br>
+
+      Address: ${order.address || ""}<br>
+
+
+      <h4>Order:</h4>
+
+      ${orderedItems}
+
+
+      <p>${order.notes || ""}</p>
+
+
+    </div>
+
+    `;
+
+
+  });
+
 
 }
 
 
 
-let options=JSON.parse(localStorage.options||'{"colors":["Pink","Lavender","White"],"wrappers":["Korean Wrap","Kraft Wrap"],"addons":["Chocolate","Message Card"]}');
-function saveOptions(){localStorage.options=JSON.stringify(options);showOptions();}
-function addColor(){if(newColor.value){options.colors.push(newColor.value);saveOptions();newColor.value='';}}
-function addWrapper(){if(newWrapper.value){options.wrappers.push(newWrapper.value);saveOptions();newWrapper.value='';}}
-function addAddon(){if(newAddon.value){options.addons.push(newAddon.value);saveOptions();newAddon.value='';}}
-function showOptions(){colors.innerHTML=options.colors.join(', ');wrappers.innerHTML=options.wrappers.join(', ');addons.innerHTML=options.addons.join(', ');}
-showOptions();
-window.addProduct = addProduct;
-window.showProducts = showProducts;
-window.showOrders = showOrders;
 
-window.saveSettings = saveSettings;
-window.addColor = addColor;
-window.addWrapper = addWrapper;
-window.addAddon = addAddon;
-async function deleteProduct(id){
-await deleteDoc(doc(db,"products",id));
-alert("Product deleted!");
+// LOAD DATA
+
 showProducts();
-}
-
-window.deleteProduct = deleteProduct;
-showOrders().catch(err => console.log("Orders Error:", err));
-showProducts().catch(err => console.log("Products Error:", err));
-
+showOrders();

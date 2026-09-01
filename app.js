@@ -183,33 +183,41 @@ window.trackOrder = trackOrder;
 const petals = document.getElementById("petals");
 
 if (petals) {
+
     const flowers = ["🌸","🌷","🌺","🌼"];
 
-    for(let i = 0; i < 25; i++){
-
-        const flower = document.createElement("span");
-
-        flower.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
-
-        flower.style.position = "fixed";
-        flower.style.top = "-40px";
-        flower.style.left = Math.random()*100 + "vw";
-        flower.style.fontSize = (18 + Math.random()*20) + "px";
-        flower.style.opacity = "0.8";
-        flower.style.transition = "transform 5s linear, opacity 5s";
-
-        petals.appendChild(flower);
+    for(let i = 0; i < 10; i++){
 
         setTimeout(()=>{
-            flower.style.transform =
-            `translateY(110vh) rotate(360deg)`;
 
-            flower.style.opacity = "0";
+            const flower = document.createElement("span");
 
-        },100);
+            flower.innerHTML = flowers[
+                Math.floor(Math.random() * flowers.length)
+            ];
 
-        setTimeout(()=>{
-            flower.remove();
-        },5500);
+            flower.style.position = "fixed";
+            flower.style.top = "-40px";
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.fontSize = (18 + Math.random() * 12) + "px";
+            flower.style.opacity = "0.75";
+            flower.style.zIndex = "9999";
+            flower.style.transition = "transform 7s linear, opacity 7s";
+
+            petals.appendChild(flower);
+
+            setTimeout(()=>{
+                flower.style.transform =
+                `translateY(110vh) rotate(360deg)`;
+                flower.style.opacity = "0";
+            },100);
+
+            setTimeout(()=>{
+                flower.remove();
+            },7500);
+
+        }, Math.random() * 3000);
+
     }
 }
+

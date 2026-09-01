@@ -179,3 +179,37 @@ window.showCart = showCart;
 window.removeCart = removeCart;
 window.trackOrder = trackOrder;
 
+// Luxury opening flower animation
+const petals = document.getElementById("petals");
+
+if (petals) {
+    const flowers = ["🌸","🌷","🌺","🌼"];
+
+    for(let i = 0; i < 25; i++){
+
+        const flower = document.createElement("span");
+
+        flower.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
+
+        flower.style.position = "fixed";
+        flower.style.top = "-40px";
+        flower.style.left = Math.random()*100 + "vw";
+        flower.style.fontSize = (18 + Math.random()*20) + "px";
+        flower.style.opacity = "0.8";
+        flower.style.transition = "transform 5s linear, opacity 5s";
+
+        petals.appendChild(flower);
+
+        setTimeout(()=>{
+            flower.style.transform =
+            `translateY(110vh) rotate(360deg)`;
+
+            flower.style.opacity = "0";
+
+        },100);
+
+        setTimeout(()=>{
+            flower.remove();
+        },5500);
+    }
+}

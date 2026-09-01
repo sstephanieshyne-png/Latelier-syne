@@ -74,8 +74,48 @@ function addToCart(product){
     cart.push(product);
     localStorage.cart = JSON.stringify(cart);
     alert(product.name + " added to cart!");
+    showCart();
 }
 
+function showCart(){
+
+let cartBox = document.getElementById("cart");
+let totalBox = document.getElementById("total");
+
+cartBox.innerHTML = "";
+
+let total = 0;
+
+cart.forEach((item,index)=>{
+
+cartBox.innerHTML += `
+<p>
+${item.name} - ₱${item.price}
+<button onclick="removeCart(${index})">Remove</button>
+</p>
+`;
+
+total += Number(item.price);
+
+});
+
+totalBox.innerHTML = "Total: ₱" + total;
+
+}
+
+
+function removeCart(index){
+
+cart.splice(index,1);
+
+localStorage.cart = JSON.stringify(cart);
+
+showCart();
+
+}
 window.addToCart = addToCart;
 window.preview = preview;
 window.submitOrder = submitOrder;
+
+window.showCart = showCart;
+window.removeCart = removeCart;

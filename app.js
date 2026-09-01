@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
@@ -47,7 +47,7 @@ document.getElementById('customPreview').innerHTML=
 }
 
 
-function submitOrder(){
+async function submitOrder(){
 let orders=JSON.parse(localStorage.orders||'[]');
 
 orders.push({
@@ -60,10 +60,18 @@ custom:document.getElementById('customPreview').innerHTML,
 date:new Date().toLocaleString()
 });
 
-localStorage.orders=JSON.stringify(orders);
-alert('Order submitted!');
-}
+await addDoc(collection(db,"orders"),{
+customer:customer.value,
+phone:phone.value,
+address:address.value,
+items:cart,
+notes:notes.value,
+custom:document.getElementById('customPreview').innerHTML,
+date:new Date().toLocaleString()
+});
 
+alert("Order submitted!");
+}
 
 function getPaymentMethod(){
 const payment = document.getElementById('paymentMethod');

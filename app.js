@@ -54,6 +54,7 @@ orders.push({
 customer:customer.value,
 phone:phone.value,
 address:address.value,
+items:cart,
 notes:notes.value,
 custom:document.getElementById('customPreview').innerHTML,
 date:new Date().toLocaleString()

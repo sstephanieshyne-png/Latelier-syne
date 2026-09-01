@@ -157,7 +157,7 @@ async function trackOrder(){
 
             <p>Date: ${order.date}</p>
 
-            <p>Status: Processing</p>
+            <p>Status: ${order.status ||"Pending"}</p>
 
             `;
 

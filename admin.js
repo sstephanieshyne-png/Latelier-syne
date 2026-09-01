@@ -161,3 +161,4 @@ showProducts();
 window.deleteProduct = deleteProduct;
 showOrders().catch(err => console.log("Orders Error:", err));
 showProducts().catch(err => console.log("Products Error:", err));
+

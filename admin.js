@@ -145,6 +145,7 @@ function showOptions(){colors.innerHTML=options.colors.join(', ');wrappers.inner
 showOptions();
 window.addProduct = addProduct;
 window.showProducts = showProducts;
+window.showOrders = showOrders;
 
 window.saveSettings = saveSettings;
 window.addColor = addColor;

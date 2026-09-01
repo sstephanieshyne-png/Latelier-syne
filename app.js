@@ -170,6 +170,7 @@ async function trackOrder(){
         result.innerHTML = "No order found.";
 
     }
+}
 
 window.addToCart = addToCart;
 window.preview = preview;
@@ -177,3 +178,4 @@ window.submitOrder = submitOrder;
 window.showCart = showCart;
 window.removeCart = removeCart;
 window.trackOrder = trackOrder;
+}

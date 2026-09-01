@@ -60,11 +60,7 @@ if(file){
 
 }
 
-function deleteProduct(i){
-products.splice(i,1);
-localStorage.products=JSON.stringify(products);
-showProducts();
-}
+
 
 async function showProducts(){
 
@@ -89,7 +85,7 @@ ${p.image ? '<img src="'+p.image+'">' : ''}
 <h3>${p.name}</h3>
 <p>₱${p.price}</p>
 <p>${p.desc}</p>
-<button onclick="deleteProduct(${i})">Delete</button>
+<button onclick="deleteProduct('${p.id}')">Delete</button>
 </div>`
 
 ).join('');

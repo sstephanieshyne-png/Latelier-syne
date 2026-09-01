@@ -67,6 +67,7 @@ address:address.value,
 items:cart,
 notes:notes.value,
 custom:document.getElementById('customPreview').innerHTML,
+status:"Pending",
 date:new Date().toLocaleString()
 });
 

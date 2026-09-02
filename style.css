@@ -202,3 +202,109 @@ input,textarea,select{
     }
 
 }
+/* =================================
+   LUXURY FLORAL BACKGROUND UPGRADE
+================================= */
+
+body{
+
+    background:
+    radial-gradient(circle at 10% 20%, rgba(255,210,225,.45), transparent 30%),
+    radial-gradient(circle at 90% 70%, rgba(240,220,245,.45), transparent 35%),
+    #fff8f3;
+
+}
+
+
+/* soft floating flower petals */
+
+#petals span{
+
+    position:fixed;
+
+    top:-50px;
+
+    font-size:25px;
+
+    opacity:.35;
+
+    pointer-events:none;
+
+    animation:petalDrop linear infinite;
+
+}
+
+
+#petals span:nth-child(1){
+    left:10%;
+    animation-duration:12s;
+}
+
+#petals span:nth-child(2){
+    left:30%;
+    animation-duration:16s;
+}
+
+#petals span:nth-child(3){
+    left:55%;
+    animation-duration:14s;
+}
+
+#petals span:nth-child(4){
+    left:75%;
+    animation-duration:18s;
+}
+
+#petals span:nth-child(5){
+    left:90%;
+    animation-duration:13s;
+}
+
+
+
+@keyframes petalDrop{
+
+0%{
+    transform:translateY(-100px) rotate(0deg);
+}
+
+
+100%{
+    transform:translateY(110vh) rotate(360deg);
+}
+
+}
+
+
+/* luxury soft glow behind sections */
+
+section,
+.hero,
+.card{
+
+    backdrop-filter:blur(5px);
+
+}
+
+
+/* slightly softer cards */
+
+.card{
+
+    border:1px solid rgba(185,135,157,.15);
+
+}
+
+
+/* premium button hover */
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 12px 25px rgba(185,135,157,.25);
+
+    transition:.3s;
+
+}

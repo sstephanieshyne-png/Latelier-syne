@@ -310,7 +310,70 @@ window.updateStatus = async function(id,status){
 };
 
 
+// ======================
+// CUSTOMIZE OPTIONS
+// ======================
 
+window.addColor = async function(){
+
+  const color = document.getElementById("newColor").value;
+
+  if(!color){
+    alert("Enter color");
+    return;
+  }
+
+  await addDoc(collection(db,"customColors"),{
+    name: color
+  });
+
+  alert("Color Added!");
+
+  document.getElementById("newColor").value="";
+
+};
+
+
+
+window.addWrapper = async function(){
+
+  const wrapper = document.getElementById("newWrapper").value;
+
+  if(!wrapper){
+    alert("Enter wrapper");
+    return;
+  }
+
+  await addDoc(collection(db,"customWrappers"),{
+    name: wrapper
+  });
+
+  alert("Wrapper Added!");
+
+  document.getElementById("newWrapper").value="";
+
+};
+
+
+
+window.addAddon = async function(){
+
+  const addon = document.getElementById("newAddon").value;
+
+  if(!addon){
+    alert("Enter add-on");
+    return;
+  }
+
+  await addDoc(collection(db,"customAddons"),{
+    name:addon
+  });
+
+  alert("Add-on Added!");
+
+  document.getElementById("newAddon").value="";
+
+};
 
 // ======================
 // LOAD DATA

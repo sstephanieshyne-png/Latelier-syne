@@ -439,14 +439,19 @@ section{
 }
 
 
-.card img{
+.card h3{
+    margin-top:18px;
+    margin-bottom:8px;
+}
 
-    height:300px;
 
-    object-fit:cover;
+.card p{
+    margin:6px 0;
+}
 
-    border-radius:28px;
 
+.card button{
+    margin-top:15px;
 }
 
 

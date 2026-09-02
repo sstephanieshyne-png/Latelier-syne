@@ -330,3 +330,103 @@ section{
     z-index:5;
 
 }
+/* =================================
+   LUXURY PRODUCT COLLECTION CARDS
+================================= */
+
+
+.grid{
+
+    gap:30px;
+
+}
+
+
+.card{
+
+    background:
+    linear-gradient(
+        145deg,
+        #ffffff,
+        #fff5f8
+    );
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    padding:18px;
+
+    border:1px solid rgba(185,135,157,.18);
+
+    transition:.4s ease;
+
+}
+
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+    0 25px 50px rgba(185,135,157,.22);
+
+}
+
+
+
+.card img{
+
+    transition:.5s ease;
+
+}
+
+
+.card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+
+
+.card h3{
+
+    color:#604957;
+
+    font-size:22px;
+
+    margin-top:20px;
+
+}
+
+
+
+.card p{
+
+    color:#a77b91;
+
+}
+
+
+
+.card button{
+
+    width:100%;
+
+    margin-top:15px;
+
+    background:#c58ba5;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+}
+
+
+.card button:hover{
+
+    background:#ad718d;
+
+}

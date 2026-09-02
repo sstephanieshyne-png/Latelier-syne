@@ -10,12 +10,11 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+// ======================
+// FIREBASE CONFIG
+// ======================
+
 const firebaseConfig = {
   apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
   authDomain: "latelier-syne.firebaseapp.com",
@@ -29,7 +28,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app);
+
+
+// ======================
+// IMGBB SETTINGS
+// ======================
+
+const IMGBB_API_KEY = 78157b4e1e63790ce09bee450d5acd5c;
+
 
 // ======================
 // ADD PRODUCT
@@ -42,6 +48,7 @@ window.addProduct = async function(){
   const desc = document.getElementById("desc").value;
   const photo = document.getElementById("photo").files[0];
 
+
   if(!name || !price){
     alert("Please complete product details");
     return;
@@ -50,51 +57,73 @@ window.addProduct = async function(){
 
   let imageURL = "";
 
-if(photo){
+
+  if(photo){
 
     try{
 
-        const imageRef = ref(
-            storage,
-            "products/" + photo.name
-        );
+      let formData = new FormData();
 
-        await uploadBytes(imageRef, photo);
+      formData.append("image", photo);
 
-        imageURL = await getDownloadURL(imageRef);
+
+      const response = await fetch(
+        `https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`,
+        {
+          method:"POST",
+          body:formData
+        }
+      );
+
+
+      const data = await response.json();
+
+
+      if(data.success){
+
+        imageURL = data.data.url;
+
+      }
+
 
     }catch(error){
 
-        console.log(error);
-        alert("Image upload failed, but product can still be added.");
+      console.log(error);
+
+      alert("Image upload failed");
 
     }
 
-}
+  }
 
-await addDoc(collection(db,"products"),{
+
+
+  await addDoc(collection(db,"products"),{
 
     name:name,
+
     price:Number(price),
+
     desc:desc,
+
     image:imageURL
 
-});
+  });
+
 
 
   alert("Product Added!");
 
+
   document.getElementById("name").value="";
   document.getElementById("price").value="";
   document.getElementById("desc").value="";
+  document.getElementById("photo").value="";
 
 
   showProducts();
 
 };
-
-
-
 // ======================
 // SHOW PRODUCTS
 // ======================
@@ -103,7 +132,7 @@ async function showProducts(){
 
   const productList = document.getElementById("productList");
 
-  productList.innerHTML="";
+  productList.innerHTML = "";
 
 
   const snapshot = await getDocs(collection(db,"products"));
@@ -118,6 +147,10 @@ async function showProducts(){
 
     <div class="card">
 
+      ${product.image ? 
+      `<img src="${product.image}" style="width:200px;border-radius:20px;">`
+      : ""}
+
       <h3>${product.name}</h3>
 
       <p>₱${product.price}</p>
@@ -129,7 +162,6 @@ async function showProducts(){
       Delete
       </button>
 
-
     </div>
 
     `;
@@ -137,17 +169,21 @@ async function showProducts(){
 
   });
 
-
 }
 
 
 
+// ======================
+// DELETE PRODUCT
+// ======================
 
 window.deleteProduct = async function(id){
 
   await deleteDoc(doc(db,"products",id));
 
+
   alert("Product Deleted!");
+
 
   showProducts();
 
@@ -160,12 +196,11 @@ window.deleteProduct = async function(id){
 // SHOW ORDERS
 // ======================
 
-
 async function showOrders(){
 
   const orderList = document.getElementById("orderList");
 
-  orderList.innerHTML="";
+  orderList.innerHTML = "";
 
 
   const snapshot = await getDocs(collection(db,"orders"));
@@ -175,7 +210,9 @@ async function showOrders(){
 
 
     const order = item.data();
+
     const orderId = item.id;
+
 
     let orderedItems = "";
 
@@ -185,7 +222,9 @@ async function showOrders(){
       order.items.forEach(product=>{
 
         orderedItems += `
+
         🌸 ${product.name} - ₱${product.price}<br>
+
         `;
 
       });
@@ -193,7 +232,9 @@ async function showOrders(){
     }
 
 
+
     orderList.innerHTML += `
+
 
     <div class="card">
 
@@ -210,18 +251,32 @@ async function showOrders(){
 
 
       <p>${order.notes || ""}</p>
+
+
       <p>
       Status: ${order.status || "Pending"}
-      <p>
+      </p>
+
 
       <select onchange="updateStatus('${orderId}', this.value)">
-<option value="Pending">Pending</option>
-<option value="Preparing">Preparing</option>
-<option value="Ready for Delivery">Ready for Delivery</option>
-<option value="Completed">Completed</option>
-</select>
+
+        <option value="Pending">Pending</option>
+
+        <option value="Preparing">Preparing</option>
+
+        <option value="Ready for Delivery">
+        Ready for Delivery
+        </option>
+
+        <option value="Completed">
+        Completed
+        </option>
+
+      </select>
+
 
     </div>
+
 
     `;
 
@@ -232,16 +287,35 @@ async function showOrders(){
 }
 
 
+
+
+// ======================
+// UPDATE STATUS
+// ======================
+
 window.updateStatus = async function(id,status){
 
-await updateDoc(doc(db,"orders",id),{
-status: status
-});
 
-alert("Status updated!");
+  await updateDoc(doc(db,"orders",id),{
+
+    status:status
+
+  });
+
+
+  alert("Status updated!");
+
   showOrders();
- }; 
+
+};
+
+
+
+
+// ======================
 // LOAD DATA
+// ======================
 
 showProducts();
+
 showOrders();

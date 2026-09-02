@@ -374,11 +374,101 @@ window.addAddon = async function(){
   document.getElementById("newAddon").value="";
 
 };
+// ======================
+// SHOW CUSTOM OPTIONS
+// ======================
 
+async function showCustomizeOptions(){
+
+  const colors = document.getElementById("colors");
+  const wrappers = document.getElementById("wrappers");
+  const addons = document.getElementById("addons");
+
+
+  colors.innerHTML = "";
+  wrappers.innerHTML = "";
+  addons.innerHTML = "";
+
+
+  const colorSnap = await getDocs(collection(db,"customColors"));
+
+  colorSnap.forEach((item)=>{
+
+    colors.innerHTML += `
+    <p>
+    🌸 ${item.data().name}
+    <button onclick="deleteColor('${item.id}')">
+    Delete
+    </button>
+    </p>
+    `;
+
+  });
+
+
+
+  const wrapperSnap = await getDocs(collection(db,"customWrappers"));
+
+  wrapperSnap.forEach((item)=>{
+
+    wrappers.innerHTML += `
+    <p>
+    🎀 ${item.data().name}
+    <button onclick="deleteWrapper('${item.id}')">
+    Delete
+    </button>
+    </p>
+    `;
+
+  });
+
+
+
+  const addonSnap = await getDocs(collection(db,"customAddons"));
+
+  addonSnap.forEach((item)=>{
+
+    addons.innerHTML += `
+    <p>
+    🍫 ${item.data().name}
+    <button onclick="deleteAddon('${item.id}')">
+    Delete
+    </button>
+    </p>
+    `;
+
+  });
+
+}
+window.deleteColor = async function(id){
+
+await deleteDoc(doc(db,"customColors",id));
+
+showCustomizeOptions();
+
+};
+
+
+window.deleteWrapper = async function(id){
+
+await deleteDoc(doc(db,"customWrappers",id));
+
+showCustomizeOptions();
+
+};
+
+
+window.deleteAddon = async function(id){
+
+await deleteDoc(doc(db,"customAddons",id));
+
+showCustomizeOptions();
+
+};
 // ======================
 // LOAD DATA
 // ======================
 
 showProducts();
-
 showOrders();
+showCustomizeOptions();

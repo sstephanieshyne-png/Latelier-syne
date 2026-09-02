@@ -513,3 +513,19 @@ section{
     0 15px 30px rgba(185,135,157,.35);
 
 }
+.card p:nth-of-type(2){
+
+    font-size:16px;
+
+    color:#9d7187;
+
+    line-height:1.5;
+
+}
+.card h3{
+
+    font-size:26px;
+
+    letter-spacing:.5px;
+
+}

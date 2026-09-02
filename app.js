@@ -107,11 +107,8 @@ function addToCart(product){
 function addCustomBouquet(){
 
     if(!window.customBouquet){
-
         alert("Please preview your custom bouquet first 🌸");
-
         return;
-
     }
 
     cart.push(window.customBouquet);
@@ -122,6 +119,7 @@ function addCustomBouquet(){
 
 showCart();
 }
+window.addCustomBouquet = addCustomBouquet;
 function showCart(){
 
 let cartBox = document.getElementById("cart");

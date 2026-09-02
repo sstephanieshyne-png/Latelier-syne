@@ -118,9 +118,11 @@ function addCustomBouquet(){
 
     localStorage.cart = JSON.stringify(cart);
 
-    alert("Custom Bouquet added to cart! 🌸");
+    alert("GUMANA ANG CUSTOM BUTTON 🌸");
 
-    showCart();
+console.log(window.customBouquet);
+
+showCart();
 }
 function showCart(){
 

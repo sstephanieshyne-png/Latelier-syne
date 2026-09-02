@@ -34,7 +34,7 @@ const db = getFirestore(app);
 // IMGBB SETTINGS
 // ======================
 
-const IMGBB_API_KEY = 78157b4e1e63790ce09bee450d5acd5c;
+const IMGBB_API_KEY = "78157b4e1e63790ce09bee450d5acd5c";
 
 
 // ======================

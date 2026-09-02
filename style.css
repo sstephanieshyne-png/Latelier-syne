@@ -529,3 +529,16 @@ section{
     letter-spacing:.5px;
 
 }
+.card img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    border-radius:28px;
+
+}

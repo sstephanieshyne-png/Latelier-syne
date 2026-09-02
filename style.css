@@ -308,3 +308,25 @@ button:hover{
     transition:.3s;
 
 }
+/* Softer luxury petals */
+
+#petals span{
+
+    filter:blur(.3px);
+
+    opacity:.22;
+
+    text-shadow:
+    0 5px 15px rgba(185,135,157,.25);
+
+}
+
+
+.hero,
+header,
+section{
+
+    position:relative;
+    z-index:5;
+
+}

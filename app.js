@@ -49,7 +49,7 @@ function preview(){
         color: color.value,
         wrapper: wrapper.value,
         message: message.value,
-        price: "To be confirmed"
+        price: 0
     };
 
     window.customBouquet = customData;
@@ -104,7 +104,24 @@ function addToCart(product){
     alert(product.name + " added to cart!");
     showCart();
 }
+function addCustomBouquet(){
 
+    if(!window.customBouquet){
+
+        alert("Please preview your custom bouquet first 🌸");
+
+        return;
+
+    }
+
+    cart.push(window.customBouquet);
+
+    localStorage.cart = JSON.stringify(cart);
+
+    alert("Custom Bouquet added to cart! 🌸");
+
+    showCart();
+}
 function showCart(){
 
 let cartBox = document.getElementById("cart");

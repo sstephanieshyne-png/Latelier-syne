@@ -430,3 +430,81 @@ section{
     background:#ad718d;
 
 }
+/* ===============================
+   PREMIUM PRODUCT DETAILS
+================================ */
+
+.card{
+    padding:22px;
+}
+
+
+.card img{
+
+    height:300px;
+
+    object-fit:cover;
+
+    border-radius:28px;
+
+}
+
+
+.card h3{
+
+    margin-top:22px;
+
+    margin-bottom:10px;
+
+    font-size:24px;
+
+    letter-spacing:.3px;
+
+}
+
+
+.card p{
+
+    margin:8px 0;
+
+    line-height:1.6;
+
+}
+
+
+/* price styling */
+
+.card p:nth-of-type(1){
+
+    font-size:20px;
+
+    font-weight:500;
+
+    color:#b9879d;
+
+}
+
+
+/* luxury button */
+
+.card button{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    letter-spacing:.5px;
+
+    transition:.3s;
+
+}
+
+
+.card button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 15px 30px rgba(185,135,157,.35);
+
+}

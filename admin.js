@@ -52,17 +52,25 @@ window.addProduct = async function(){
 
 if(photo){
 
-    const imageRef = ref(
-        storage,
-        "products/" + photo.name
-    );
+    try{
 
-    await uploadBytes(imageRef, photo);
+        const imageRef = ref(
+            storage,
+            "products/" + photo.name
+        );
 
-    imageURL = await getDownloadURL(imageRef);
+        await uploadBytes(imageRef, photo);
+
+        imageURL = await getDownloadURL(imageRef);
+
+    }catch(error){
+
+        console.log(error);
+        alert("Image upload failed, but product can still be added.");
+
+    }
 
 }
-
 
 await addDoc(collection(db,"products"),{
 

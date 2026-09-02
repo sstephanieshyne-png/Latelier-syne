@@ -10,7 +10,12 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
   authDomain: "latelier-syne.firebaseapp.com",
@@ -24,7 +29,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const storage = getStorage(app);
 
 // ======================
 // ADD PRODUCT
@@ -35,7 +40,7 @@ window.addProduct = async function(){
   const name = document.getElementById("name").value;
   const price = document.getElementById("price").value;
   const desc = document.getElementById("desc").value;
-
+  const photo = document.getElementById("photo").files[0];
 
   if(!name || !price){
     alert("Please complete product details");
@@ -43,13 +48,30 @@ window.addProduct = async function(){
   }
 
 
-  await addDoc(collection(db,"products"),{
+  let imageURL = "";
+
+if(photo){
+
+    const imageRef = ref(
+        storage,
+        "products/" + photo.name
+    );
+
+    await uploadBytes(imageRef, photo);
+
+    imageURL = await getDownloadURL(imageRef);
+
+}
+
+
+await addDoc(collection(db,"products"),{
 
     name:name,
     price:Number(price),
-    desc:desc
+    desc:desc,
+    image:imageURL
 
-  });
+});
 
 
   alert("Product Added!");

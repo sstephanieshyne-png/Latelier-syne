@@ -132,10 +132,24 @@ let total = 0;
 cart.forEach((item,index)=>{
 
 cartBox.innerHTML += `
-<p>
-${item.name} - ₱${item.price}
-<button onclick="removeCart(${index})">Remove</button>
-</p>
+<div class="cart-item">
+
+<h3>${item.name}</h3>
+
+${item.flower ? `
+<p>🌸 Flower: ${item.flower}</p>
+<p>🎨 Color: ${item.color}</p>
+<p>🎀 Wrapper: ${item.wrapper}</p>
+<p>💌 Message: ${item.message}</p>
+` : ""}
+
+<p>₱${item.price}</p>
+
+<button onclick="removeCart(${index})">
+Remove
+</button>
+
+</div>
 `;
 
 total += Number(item.price);

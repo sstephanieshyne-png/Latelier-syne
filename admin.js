@@ -517,7 +517,15 @@ window.deleteAddon = async function(id){
 await deleteDoc(doc(db,"customAddons",id));
 
 showCustomizeOptions();
+window.deleteFlower = async function(id){
 
+  await deleteDoc(
+    doc(db,"customFlowers",id)
+  );
+
+  showCustomizeOptions();
+
+};
 };
 // ======================
 // LOAD DATA

@@ -412,16 +412,38 @@ window.addAddon = async function(){
 
 async function showCustomizeOptions(){
 
+  const flowers = document.getElementById("flowers");
   const colors = document.getElementById("colors");
   const wrappers = document.getElementById("wrappers");
   const addons = document.getElementById("addons");
 
 
+  flowers.innerHTML = "";
   colors.innerHTML = "";
   wrappers.innerHTML = "";
   addons.innerHTML = "";
 
 
+  const flowerSnap = await getDocs(
+collection(db,"customFlowers")
+);
+
+flowerSnap.forEach((item)=>{
+
+flowers.innerHTML += `
+
+<p>
+🌸 ${item.data().name}
+
+<button onclick="deleteFlower('${item.id}')">
+Delete
+</button>
+
+</p>
+
+`;
+
+});
   const colorSnap = await getDocs(collection(db,"customColors"));
 
   colorSnap.forEach((item)=>{

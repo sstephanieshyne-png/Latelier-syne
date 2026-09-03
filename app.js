@@ -280,7 +280,26 @@ if (petals) {
 // =============================
 
 async function loadCustomizeOptions(){
+// FLOWERS
 
+const flowerSnap = await getDocs(
+    collection(db,"customFlowers")
+);
+
+const flowerSelect = document.getElementById("flower");
+
+flowerSelect.innerHTML="";
+
+
+flowerSnap.forEach((doc)=>{
+
+    flowerSelect.innerHTML += `
+    <option>
+    ${doc.data().name}
+    </option>
+    `;
+
+});
     // COLORS
     const colorSnap = await getDocs(
         collection(db,"customColors")

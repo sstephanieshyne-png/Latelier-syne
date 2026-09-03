@@ -542,3 +542,92 @@ section{
     border-radius:28px;
 
 }
+/* ===============================
+   PREMIUM YOUR CART DESIGN
+================================ */
+
+#cart{
+
+    background:
+    linear-gradient(
+        145deg,
+        #ffffff,
+        #fff5f8
+    );
+
+    padding:25px;
+
+    border-radius:30px;
+
+    box-shadow:
+    0 15px 40px rgba(185,135,157,.15);
+
+    margin-bottom:20px;
+
+}
+
+
+/* product inside cart */
+
+#cart h3{
+
+    color:#604957;
+
+    font-size:22px;
+
+    margin-bottom:8px;
+
+}
+
+
+#cart p{
+
+    color:#9d7187;
+
+    font-size:18px;
+
+}
+
+
+/* remove button */
+
+#cart button{
+
+    background:#c58ba5;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 30px;
+
+    border-radius:25px;
+
+    margin-top:10px;
+
+}
+
+
+#cart button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+/* total */
+
+#total{
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    color:#604957;
+
+    box-shadow:
+    0 10px 30px rgba(185,135,157,.12);
+
+}

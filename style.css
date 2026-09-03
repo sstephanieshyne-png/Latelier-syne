@@ -980,3 +980,52 @@ select{
     text-align:center;
 
 }
+/* ===============================
+ CUSTOM BOUQUET BUTTON STYLE
+================================ */
+
+
+#customize button:first-of-type{
+
+    background:white;
+
+    color:#b9879d;
+
+    border:2px solid #d7a0b7;
+
+}
+
+
+#customize button:first-of-type:hover{
+
+    background:#fce8f0;
+
+}
+
+
+
+/* main customize cart button */
+
+#customize button:last-of-type{
+
+    background:#c58ba5;
+
+    color:white;
+
+    margin-top:20px;
+
+}
+
+
+
+/* button spacing */
+
+#customize button{
+
+    display:block;
+
+    width:100%;
+
+    border-radius:30px;
+
+}

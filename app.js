@@ -134,6 +134,12 @@ cart.forEach((item,index)=>{
 cartBox.innerHTML += `
 <div class="cart-item">
 
+${item.image ? `
+<img class="cart-image" src="${item.image}">
+` : ""}
+
+<div class="cart-details">
+
 <h3>${item.name}</h3>
 
 ${item.flower ? `
@@ -143,11 +149,13 @@ ${item.flower ? `
 <p>💌 Message: ${item.message}</p>
 ` : ""}
 
-<p>₱${item.price}</p>
+<p class="cart-price">₱${item.price}</p>
 
 <button onclick="removeCart(${index})">
 Remove
 </button>
+
+</div>
 
 </div>
 `;

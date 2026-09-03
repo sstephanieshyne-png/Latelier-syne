@@ -1029,3 +1029,53 @@ select{
     border-radius:30px;
 
 }
+/* ===============================
+   GLASS PINK NOTIFICATION
+================================ */
+
+.notification{
+
+    position:fixed;
+
+    bottom:30px;
+
+    right:30px;
+
+    background:
+    rgba(255, 220, 235, 0.65);
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+    color:#604957;
+
+    padding:16px 28px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,.5);
+
+    box-shadow:
+    0 15px 40px rgba(185,135,157,.25);
+
+    z-index:9999;
+
+    animation:notificationIn .4s ease;
+
+}
+
+
+@keyframes notificationIn{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}

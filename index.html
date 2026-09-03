@@ -56,16 +56,49 @@ Shop Collection
 
 </section>
 <section class="custom">
+
 <h2>Customize Your Bouquet 🌸</h2>
-<select id="flower"><option>Rose</option><option>Tulip</option><option>Mixed Flowers</option></select>
-<select id="color"><option>Pink</option><option>Lavender</option><option>White</option></select>
-<select id="wrapper"><option>Korean Wrap</option><option>Kraft Wrap</option><option>Lace Wrap</option></select>
-<textarea id="message" placeholder="Customer message"></textarea>
-<button onclick="preview()">Preview Request</button>
+
+
+<select id="flower">
+<option>Rose</option>
+</select>
+
+
+<select id="color">
+<option>Loading colors...</option>
+</select>
+
+
+<select id="wrapper">
+<option>Loading wrappers...</option>
+</select>
+
+
+<select id="addon">
+<option value="">No Add-on</option>
+</select>
+
+
+<textarea 
+id="message" 
+placeholder="Additional request (Chocolate, Card message, etc.)">
+</textarea>
+
+
+<button onclick="preview()">
+Preview Request
+</button>
+
+
 <button onclick="addCustomBouquet()">
 Add Custom Bouquet to Cart 🛒
 </button>
+
+
 <div id="customPreview"></div>
+
+
 </section>
 
 <section>

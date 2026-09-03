@@ -332,7 +332,39 @@ window.addColor = async function(){
   document.getElementById("newColor").value="";
 
 };
+window.addFlower = async function(){
 
+const flower =
+
+document.getElementById("newFlower").value;
+
+if(!flower){
+
+alert("Enter flower");
+
+return;
+
+}
+
+await addDoc(
+
+collection(db,"customFlowers"),
+
+{
+
+name: flower
+
+}
+
+);
+
+alert("Flower Added!");
+
+document.getElementById("newFlower").value="";
+
+loadFlowers();
+
+}
 
 
 window.addWrapper = async function(){

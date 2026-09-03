@@ -774,3 +774,43 @@ section{
     0 15px 35px rgba(185,135,157,.15);
 
 }
+/* CART PRODUCT IMAGE */
+
+.cart-item{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+
+.cart-image{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+}
+
+
+.cart-details{
+
+    flex:1;
+
+}
+
+
+.cart-price{
+
+    color:#b9879d;
+
+    font-weight:bold;
+
+}

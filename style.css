@@ -934,3 +934,49 @@ section{
     0 10px 25px rgba(185,135,157,.25);
 
 }
+/* =================================
+ PREMIUM CUSTOM BOUQUET POLISH
+================================= */
+
+
+select{
+
+    appearance:none;
+
+    background:
+    #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23c58ba5' d='M4 6l4 4 4-4z'/%3E%3C/svg%3E")
+    no-repeat right 18px center;
+
+    background-size:16px;
+
+    padding-right:50px !important;
+
+}
+
+
+/* space buttons */
+
+#customize button{
+
+    margin-top:18px;
+
+}
+
+
+/* preview button */
+
+#customPreview{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:25px;
+
+    background:#fff7fa;
+
+    color:#8b6173;
+
+    text-align:center;
+
+}

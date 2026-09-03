@@ -631,3 +631,146 @@ section{
     0 10px 30px rgba(185,135,157,.12);
 
 }
+/* =================================
+   FLORAL BOUTIQUE CART DESIGN
+================================= */
+
+
+/* Cart container */
+
+#cart{
+
+    background:
+    linear-gradient(
+        145deg,
+        #ffffff,
+        #fff2f7
+    );
+
+    border-radius:40px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 50px rgba(185,135,157,.18);
+
+    border:1px solid rgba(185,135,157,.15);
+
+}
+
+
+
+/* cart item spacing */
+
+#cart > div{
+
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    box-shadow:
+    0 10px 25px rgba(185,135,157,.12);
+
+    border-left:
+    5px solid #d7a0b7;
+
+}
+
+
+
+/* product name */
+
+#cart h3{
+
+    font-family:"Playfair Display",serif;
+
+    color:#604957;
+
+    font-size:23px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+/* price */
+
+#cart p{
+
+    color:#b9879d;
+
+    font-size:18px;
+
+}
+
+
+
+/* remove button */
+
+#cart button{
+
+    background:#f3c7d8;
+
+    color:#6b4b58;
+
+    border:none;
+
+    border-radius:20px;
+
+    padding:10px 25px;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+
+
+#cart button:hover{
+
+    background:#d89bb4;
+
+    color:white;
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/* total summary */
+
+#total{
+
+    margin-top:25px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #f9dce8,
+        #f5e9f8
+    );
+
+    padding:25px;
+
+    border-radius:30px;
+
+    color:#604957;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:26px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 35px rgba(185,135,157,.15);
+
+}

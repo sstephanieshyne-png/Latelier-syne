@@ -510,13 +510,17 @@ await deleteDoc(doc(db,"customWrappers",id));
 showCustomizeOptions();
 
 };
-
-
 window.deleteAddon = async function(id){
 
-await deleteDoc(doc(db,"customAddons",id));
+  await deleteDoc(
+    doc(db,"customAddons",id)
+  );
 
-showCustomizeOptions();
+  showCustomizeOptions();
+
+};
+
+
 window.deleteFlower = async function(id){
 
   await deleteDoc(
@@ -525,7 +529,6 @@ window.deleteFlower = async function(id){
 
   showCustomizeOptions();
 
-};
 };
 // ======================
 // LOAD DATA

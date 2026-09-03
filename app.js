@@ -275,4 +275,82 @@ if (petals) {
 
     }
 }
+// =============================
+// LOAD CUSTOMIZE OPTIONS
+// =============================
 
+async function loadCustomizeOptions(){
+
+    // COLORS
+    const colorSnap = await getDocs(
+        collection(db,"customColors")
+    );
+
+    const colorSelect = document.getElementById("color");
+
+    colorSelect.innerHTML="";
+
+
+    colorSnap.forEach((doc)=>{
+
+        colorSelect.innerHTML += `
+        <option>
+        ${doc.data().name}
+        </option>
+        `;
+
+    });
+
+
+
+    // WRAPPERS
+
+    const wrapperSnap = await getDocs(
+        collection(db,"customWrappers")
+    );
+
+
+    const wrapperSelect = document.getElementById("wrapper");
+
+    wrapperSelect.innerHTML="";
+
+
+    wrapperSnap.forEach((doc)=>{
+
+        wrapperSelect.innerHTML += `
+        <option>
+        ${doc.data().name}
+        </option>
+        `;
+
+    });
+
+
+
+    // ADD-ONS
+
+    const addonSnap = await getDocs(
+        collection(db,"customAddons")
+    );
+
+
+    const addonSelect = document.getElementById("addon");
+
+    addonSelect.innerHTML=
+    `<option value="">No Add-on</option>`;
+
+
+    addonSnap.forEach((doc)=>{
+
+        addonSelect.innerHTML += `
+        <option>
+        ${doc.data().name}
+        </option>
+        `;
+
+    });
+
+}
+
+
+loadCustomizeOptions();

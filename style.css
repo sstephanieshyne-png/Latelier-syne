@@ -2288,3 +2288,330 @@ section:hover{
 
 
 }
+/* =====================================
+   L'ATELIER SYNE
+   ADMIN DASHBOARD LUXURY STYLE
+===================================== */
+
+
+/* admin body */
+
+body.admin-body{
+
+    background:
+
+    radial-gradient(
+    circle at 10% 10%,
+    rgba(255,190,220,.5),
+    transparent 35%
+    ),
+
+    linear-gradient(
+    135deg,
+    #fff7fb,
+    #f7dce8
+    );
+
+}
+
+
+
+/* dashboard container */
+
+.admin-container,
+.dashboard{
+
+
+    background:
+
+    rgba(255,255,255,.45);
+
+
+    backdrop-filter:
+
+    blur(20px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(20px);
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    border-radius:40px;
+
+
+
+    padding:35px;
+
+
+
+    box-shadow:
+
+
+    0 30px 70px
+
+    rgba(185,135,157,.18);
+
+
+
+}
+
+
+
+/* admin headings */
+
+.admin-container h1,
+.dashboard h1,
+.dashboard h2{
+
+
+    font-family:
+
+    "Playfair Display",
+    serif;
+
+
+
+    color:#604957;
+
+
+}
+
+
+
+/* panels */
+
+
+.panel{
+
+
+    background:
+
+    rgba(255,255,255,.55);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    border-radius:30px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    padding:25px;
+
+
+
+    margin-bottom:25px;
+
+
+
+    box-shadow:
+
+
+    0 20px 45px
+
+    rgba(185,135,157,.12);
+
+
+
+}
+
+
+
+
+.panel h2{
+
+
+    font-size:28px;
+
+
+}
+
+
+
+/* admin inputs */
+
+
+.panel input,
+.panel textarea,
+.panel select{
+
+
+    background:
+
+    rgba(255,255,255,.8);
+
+
+
+    border:
+
+    1px solid rgba(216,155,180,.25);
+
+
+
+}
+
+
+
+/* admin buttons */
+
+
+.panel button{
+
+
+    border-radius:30px;
+
+
+    padding:13px 28px;
+
+
+}
+
+
+
+/* delete buttons */
+
+button[onclick*="delete"]{
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #e6a7b8,
+
+    #d889a3
+
+    );
+
+
+}
+
+
+
+/* lists */
+
+
+#productList,
+#orderList,
+#flowers,
+#colors,
+#wrappers,
+#addons{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:15px;
+
+
+
+}
+
+
+
+
+#productList p,
+#orderList p,
+#flowers p,
+#colors p,
+#wrappers p,
+#addons p{
+
+
+    background:
+
+
+    rgba(255,255,255,.65);
+
+
+
+    padding:18px;
+
+
+    border-radius:25px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    box-shadow:
+
+
+    0 10px 25px
+
+    rgba(185,135,157,.1);
+
+
+
+}
+
+
+
+/* file upload */
+
+
+input[type="file"]{
+
+
+    padding:12px;
+
+
+}
+
+
+
+/* mobile admin */
+
+@media(max-width:768px){
+
+
+.admin-container,
+.dashboard{
+
+
+    padding:20px;
+
+
+}
+
+
+.panel{
+
+
+    padding:20px;
+
+
+}
+
+
+}

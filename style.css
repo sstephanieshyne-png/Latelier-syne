@@ -2053,3 +2053,238 @@ border-radius:30px;
     opacity:1;
 
 }
+/* =====================================
+   FINAL LUXURY DETAILS
+   L'ATELIER SYNE
+===================================== */
+
+
+/* soft button shine */
+
+button{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+button::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+
+    width:80%;
+
+    height:100%;
+
+
+    background:
+
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.5),
+        transparent
+    );
+
+
+    transition:.6s;
+
+
+}
+
+
+
+button:hover::before{
+
+    left:120%;
+
+
+}
+
+
+
+/* premium dropdown */
+
+select{
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    background-image:
+
+    linear-gradient(
+    45deg,
+    transparent 50%,
+    #c58ba5 50%
+    ),
+
+    linear-gradient(
+    135deg,
+    #c58ba5 50%,
+    transparent 50%
+    );
+
+
+    background-position:
+
+    calc(100% - 22px) 50%,
+
+    calc(100% - 16px) 50%;
+
+
+    background-size:
+
+    7px 7px,
+
+    7px 7px;
+
+
+    background-repeat:no-repeat;
+
+}
+
+
+
+/* customize preview upgrade */
+
+
+#customPreview{
+
+    border:
+
+    1px solid rgba(216,155,180,.25);
+
+
+    background:
+
+    linear-gradient(
+
+    145deg,
+
+    rgba(255,255,255,.7),
+
+    rgba(255,230,240,.65)
+
+    );
+
+
+    box-shadow:
+
+    0 20px 45px
+
+    rgba(185,135,157,.18);
+
+
+}
+
+
+
+#customPreview p{
+
+    margin:12px 0;
+
+    font-size:18px;
+
+}
+
+
+
+/* luxury section titles */
+
+
+section h2{
+
+    position:relative;
+
+    display:inline-block;
+
+}
+
+
+
+section h2::after{
+
+
+    content:"";
+
+
+    display:block;
+
+
+    width:55px;
+
+
+    height:3px;
+
+
+    margin-top:12px;
+
+
+    border-radius:10px;
+
+
+    background:#d89bb4;
+
+
+}
+
+
+
+/* smoother page feel */
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+/* subtle glass movement */
+
+.card,
+.hero,
+section{
+
+
+    transition:
+
+    transform .35s ease,
+
+    box-shadow .35s ease;
+
+
+}
+
+
+
+/* desktop hover only */
+
+@media(min-width:769px){
+
+
+.card:hover,
+section:hover{
+
+
+    transform:
+
+    translateY(-3px);
+
+
+}
+
+
+}

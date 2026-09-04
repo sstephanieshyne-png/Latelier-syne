@@ -1083,3 +1083,89 @@ showProducts();
 showOrders();
 
 showCustomizeOptions();
+// ======================
+// SHOP SETTINGS
+// ======================
+
+window.saveSettings = async function(){
+
+const shop =
+document.getElementById("shop").value;
+
+const tag =
+document.getElementById("tag").value;
+
+const fb =
+document.getElementById("fb").value;
+
+const contact =
+document.getElementById("contact").value;
+
+
+await addDoc(
+collection(db,"settings"),
+{
+shop:shop,
+tag:tag,
+facebook:fb,
+contact:contact
+}
+);
+
+
+showToast(
+"🌸 Shop Settings Saved!"
+);
+
+
+};
+
+
+
+// ======================
+// LOAD SHOP SETTINGS
+// ======================
+
+async function loadSettings(){
+
+
+const snapshot =
+await getDocs(
+collection(db,"settings")
+);
+
+
+snapshot.forEach((item)=>{
+
+
+const data=item.data();
+
+
+
+document.getElementById("shop").value =
+data.shop || "";
+
+
+
+document.getElementById("tag").value =
+data.tag || "";
+
+
+
+document.getElementById("fb").value =
+data.facebook || "";
+
+
+
+document.getElementById("contact").value =
+data.contact || "";
+
+
+});
+
+
+}
+
+
+
+loadSettings();

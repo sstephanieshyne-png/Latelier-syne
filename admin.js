@@ -8,6 +8,9 @@ import {
   deleteDoc,
   doc,
   updateDoc
+  setDoc,
+
+getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
@@ -1102,13 +1105,13 @@ const contact =
 document.getElementById("contact").value;
 
 
-await addDoc(
-collection(db,"settings"),
+await setDoc(
+doc(db,"settings","shopInfo"),
 {
-shop:shop,
-tag:tag,
+shop,
+tag,
 facebook:fb,
-contact:contact
+contact
 }
 );
 
@@ -1119,8 +1122,6 @@ showToast(
 
 
 };
-
-
 
 // ======================
 // LOAD SHOP SETTINGS

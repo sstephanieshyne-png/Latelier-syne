@@ -4,7 +4,9 @@ import {
 getFirestore, 
 collection, 
 getDocs, 
-addDoc 
+addDoc,
+doc,
+getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
@@ -25,7 +27,79 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+// ======================
+// LOAD SHOP SETTINGS
+// ======================
 
+async function loadShopSettings(){
+
+const snap = await getDoc(
+doc(db,"settings","shopInfo")
+);
+
+
+if(snap.exists()){
+
+const data = snap.data();
+
+
+const shop =
+document.getElementById("shopName");
+
+
+const tagline =
+document.getElementById("tagline");
+
+const facebook =
+document.getElementById("facebookLink");
+
+
+const contact =
+document.getElementById("contactInfo");  
+
+
+if(shop){
+
+shop.innerHTML =
+data.shop || "L’Atelier Syne";
+
+}
+
+
+
+if(tagline){
+
+tagline.innerHTML =
+data.tag || "Flowers made for your sweetest moments.";
+
+}
+if(facebook){
+
+facebook.href =
+data.facebook || "#";
+
+
+facebook.innerHTML =
+data.facebook || "Visit our page";
+
+}
+
+
+
+if(contact){
+
+contact.innerHTML =
+data.contact || "-";
+
+}
+
+}
+
+}
+
+
+
+loadShopSettings();
 
 // ======================
 // PREMIUM TOAST NOTIFICATION

@@ -1117,3 +1117,123 @@ transform:translateY(0);
     transform:translateY(-3px);
 
 }
+/* =========================
+ PREMIUM GLASS BOUTIQUE THEME
+========================= */
+
+body{
+
+    background:
+    radial-gradient(circle at 20% 20%,
+    rgba(255,190,215,.45),
+    transparent 35%),
+
+    radial-gradient(circle at 80% 10%,
+    rgba(255,220,235,.6),
+    transparent 40%),
+
+    linear-gradient(
+    135deg,
+    #fff5fa,
+    #f8dbe8
+    );
+
+    min-height:100vh;
+
+    color:#5b3a4d;
+
+}
+
+
+/* Glass containers */
+
+section,
+.card,
+.custom,
+#cart,
+.order,
+.panel{
+
+    background:
+    rgba(255,255,255,.45);
+
+    backdrop-filter:
+    blur(18px);
+
+    -webkit-backdrop-filter:
+    blur(18px);
+
+
+    border:
+    1px solid rgba(255,255,255,.6);
+
+
+    box-shadow:
+    0 20px 40px
+    rgba(180,120,150,.18);
+
+
+    border-radius:30px;
+
+}
+
+
+/* Navbar */
+
+.navbar{
+
+    background:
+    rgba(255,255,255,.35);
+
+    backdrop-filter:
+    blur(20px);
+
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px
+    rgba(180,120,150,.15);
+
+}
+
+
+
+/* Buttons */
+
+button{
+
+    background:
+    linear-gradient(
+    135deg,
+    #d88cab,
+    #c7779a
+    );
+
+
+    color:white;
+
+    border:none;
+
+    border-radius:30px;
+
+    padding:14px 28px;
+
+
+    box-shadow:
+    0 10px 20px
+    rgba(200,120,150,.25);
+
+
+    transition:.3s;
+
+}
+
+
+
+button:hover{
+
+    transform:
+    translateY(-3px);
+
+}

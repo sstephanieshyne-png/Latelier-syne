@@ -1079,3 +1079,41 @@ transform:translateY(0);
 }
 
 }
+#checkoutBtn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:35px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #d89bb4,
+        #c58ba5
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    letter-spacing:.5px;
+
+    box-shadow:
+    0 15px 30px rgba(185,135,157,.25);
+
+    transition:.3s;
+
+}
+
+
+#checkoutBtn:hover{
+
+    transform:translateY(-3px);
+
+}

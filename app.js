@@ -373,3 +373,12 @@ flowerSnap.forEach((doc)=>{
 
 
 loadCustomizeOptions();
+window.goCheckout = function(){
+
+    document
+    .getElementById("orderDetails")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}

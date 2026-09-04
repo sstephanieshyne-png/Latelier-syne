@@ -2615,3 +2615,188 @@ input[type="file"]{
 
 
 }
+/* =====================================
+   ORDER MANAGEMENT PREMIUM STYLE
+===================================== */
+
+
+#orders,
+.orders{
+
+
+background:
+
+rgba(255,255,255,.45);
+
+
+backdrop-filter:
+
+blur(18px);
+
+
+border-radius:35px;
+
+
+padding:25px;
+
+
+}
+
+
+
+/* individual orders */
+
+
+#orders > div,
+.order-card{
+
+
+background:
+
+rgba(255,255,255,.65);
+
+
+border:
+
+1px solid rgba(255,255,255,.7);
+
+
+border-radius:30px;
+
+
+padding:25px;
+
+
+margin-bottom:20px;
+
+
+box-shadow:
+
+0 15px 35px rgba(185,135,157,.12);
+
+
+}
+
+
+
+/* customer name */
+
+
+.order-card h3,
+#orders h3{
+
+
+color:#604957;
+
+
+font-family:"Playfair Display",serif;
+
+
+font-size:24px;
+
+
+}
+
+
+
+/* order details */
+
+
+.order-card p{
+
+
+line-height:1.7;
+
+
+color:#755b68;
+
+
+}
+
+
+
+/* notes */
+
+
+.order-card textarea,
+.notes{
+
+
+background:
+
+rgba(255,230,240,.55);
+
+
+border-radius:20px;
+
+
+padding:15px;
+
+
+}
+
+
+
+/* status dropdown */
+
+
+.order-card select{
+
+
+border-radius:25px;
+
+
+padding:12px 25px;
+
+
+background:white;
+
+
+border:
+
+1px solid rgba(216,155,180,.3);
+
+
+}
+
+
+
+/* update buttons */
+
+
+.order-card button{
+
+
+border-radius:25px;
+
+
+padding:12px 25px;
+
+
+background:
+
+linear-gradient(
+135deg,
+#d89bb4,
+#c58ba5
+);
+
+
+color:white;
+
+
+}
+
+
+
+/* mobile */
+
+@media(max-width:768px){
+
+.order-card{
+
+padding:20px;
+
+}
+
+}

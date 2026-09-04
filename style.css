@@ -1981,3 +1981,75 @@ border-radius:30px;
 
 
 }
+/* =====================================
+   IMAGE CLARITY FIX
+===================================== */
+
+
+/* keep photos sharp */
+
+.card img,
+.flowerCircle img,
+.product img{
+
+    filter:none !important;
+
+    backdrop-filter:none !important;
+
+    -webkit-backdrop-filter:none !important;
+
+}
+
+
+
+/* reduce glass haze on product cards */
+
+.card{
+
+    backdrop-filter:blur(8px);
+
+    -webkit-backdrop-filter:blur(8px);
+
+}
+
+
+
+/* make image sit above glass layers */
+
+.card img{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+
+/* prevent shine overlay from covering photos */
+
+.card::before{
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+
+
+/* cleaner product image container */
+
+.card{
+
+    overflow:hidden;
+
+}
+
+
+
+.card img{
+
+    opacity:1;
+
+}

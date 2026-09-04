@@ -1,1239 +1,1602 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap');
+/* =====================================
+   L'ATELIER SYNE
+   LUXURY FLORAL GLASS THEME
+   PART 1/3
+===================================== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
 
 *{
+
     box-sizing:border-box;
+
 }
 
+
 body{
+
     margin:0;
+
     padding:30px;
-    background:#fff8f3;
-    color:#66515b;
-    font-family:Poppins, sans-serif;
-}
 
-h1,h2,h3{
-    font-family:"Playfair Display",serif;
-}
 
-header.navbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    background:white;
-    padding:25px 35px;
-    border-radius:35px;
-    box-shadow:0 15px 35px #0001;
-}
-
-#logo{
-    width:75px;
-    height:75px;
-    object-fit:contain;
-    border-radius:20px;
-}
-
-.subtitle{
-    margin:0;
-    color:#b9879d;
-}
-
-#ownerLink{
-    text-decoration:none;
-    color:#b9879d;
-}
-
-.hero{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:40px;
-    margin:30px 0;
-    padding:60px;
-    border-radius:45px;
-    background:linear-gradient(135deg,#f7dce6,#eee4f6);
-}
-
-.heroText{
-    flex:1;
-}
-
-.heroText h2{
-    font-size:45px;
-    line-height:1.2;
-    color:#5d4650;
-}
-
-.heroText p{
-    font-size:18px;
-}
-
-.heroText button,
-button{
-    background:#b9879d;
-    color:white;
-    border:none;
-    padding:14px 30px;
-    border-radius:30px;
-    cursor:pointer;
-}
-
-.heroImage{
-    flex:1;
-    display:flex;
-    justify-content:center;
-}
-
-.flowerPlaceholder{
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    background:#f8e3eb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:120px;
-    box-shadow:0 20px 40px #0002;
-}
-
-section{
-    background:white;
-    padding:35px;
-    border-radius:35px;
-    margin:25px 0;
-    box-shadow:0 10px 30px #0001;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:#fff;
-    padding:20px;
-    border-radius:30px;
-    box-shadow:0 10px 30px #0001;
-}
-
-.card img{
-    width:100%;
-    height:320px;
-    object-fit:cover;
-    border-radius:25px;
-}
-
-input,textarea,select{
-    width:90%;
-    max-width:400px;
-    display:block;
-    padding:14px;
-    margin:12px 0;
-    border-radius:18px;
-    border:1px solid #ddd;
-}
-
-#petals{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:999;
-}
-.flowerCircle{
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    background:#f8e3eb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    box-shadow:0 20px 40px #0002;
-}
-
-.flowerCircle img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-
-@media(max-width:768px){
-
-.hero{
-    flex-direction:column;
-    padding:40px 25px;
-}
-
-.heroText h2{
-    font-size:38px;
-}
-
-.flowerCircle{
-    width:240px;
-    height:240px;
-}
-
-}
-/* Luxury bouquet floating effect */
-.flowerCircle {
-    animation: bouquetFloat 5s ease-in-out infinite;
-    box-shadow: 0 25px 60px rgba(185,135,157,0.25);
-}
-
-@keyframes bouquetFloat {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-
-/* Mobile adjustment */
-@media(max-width:768px){
-
-    .flowerCircle{
-        margin-top:25px;
-    }
-
-}
-/* =================================
-   LUXURY FLORAL BACKGROUND UPGRADE
-================================= */
-
-body{
-
-    background:
-    radial-gradient(circle at 10% 20%, rgba(255,210,225,.45), transparent 30%),
-    radial-gradient(circle at 90% 70%, rgba(240,220,245,.45), transparent 35%),
-    #fff8f3;
-
-}
-
-
-/* soft floating flower petals */
-
-#petals span{
-
-    position:fixed;
-
-    top:-50px;
-
-    font-size:25px;
-
-    opacity:.35;
-
-    pointer-events:none;
-
-    animation:petalDrop linear infinite;
-
-}
-
-
-#petals span:nth-child(1){
-    left:10%;
-    animation-duration:12s;
-}
-
-#petals span:nth-child(2){
-    left:30%;
-    animation-duration:16s;
-}
-
-#petals span:nth-child(3){
-    left:55%;
-    animation-duration:14s;
-}
-
-#petals span:nth-child(4){
-    left:75%;
-    animation-duration:18s;
-}
-
-#petals span:nth-child(5){
-    left:90%;
-    animation-duration:13s;
-}
-
-
-
-@keyframes petalDrop{
-
-0%{
-    transform:translateY(-100px) rotate(0deg);
-}
-
-
-100%{
-    transform:translateY(110vh) rotate(360deg);
-}
-
-}
-
-
-/* luxury soft glow behind sections */
-
-section,
-.hero,
-.card{
-
-    backdrop-filter:blur(5px);
-
-}
-
-
-/* slightly softer cards */
-
-.card{
-
-    border:1px solid rgba(185,135,157,.15);
-
-}
-
-
-/* premium button hover */
-
-button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-    0 12px 25px rgba(185,135,157,.25);
-
-    transition:.3s;
-
-}
-/* Softer luxury petals */
-
-#petals span{
-
-    filter:blur(.3px);
-
-    opacity:.22;
-
-    text-shadow:
-    0 5px 15px rgba(185,135,157,.25);
-
-}
-
-
-.hero,
-header,
-section{
-
-    position:relative;
-    z-index:5;
-
-}
-/* =================================
-   LUXURY PRODUCT COLLECTION CARDS
-================================= */
-
-
-.grid{
-
-    gap:30px;
-
-}
-
-
-.card{
-
-    background:
-    linear-gradient(
-        145deg,
-        #ffffff,
-        #fff5f8
-    );
-
-    border-radius:35px;
-
-    overflow:hidden;
-
-    padding:18px;
-
-    border:1px solid rgba(185,135,157,.18);
-
-    transition:.4s ease;
-
-}
-
-
-.card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:
-    0 25px 50px rgba(185,135,157,.22);
-
-}
-
-
-
-.card img{
-
-    transition:.5s ease;
-
-}
-
-
-.card:hover img{
-
-    transform:scale(1.05);
-
-}
-
-
-
-.card h3{
+    font-family:"Poppins",sans-serif;
 
     color:#604957;
 
-    font-size:22px;
-
-    margin-top:20px;
-
-}
-
-
-
-.card p{
-
-    color:#a77b91;
-
-}
-
-
-
-.card button{
-
-    width:100%;
-
-    margin-top:15px;
-
-    background:#c58ba5;
-
-    border-radius:25px;
-
-    font-size:14px;
-
-}
-
-
-.card button:hover{
-
-    background:#ad718d;
-
-}
-/* ===============================
-   PREMIUM PRODUCT DETAILS
-================================ */
-
-.card{
-    padding:22px;
-}
-
-
-.card h3{
-    margin-top:18px;
-    margin-bottom:8px;
-}
-
-
-.card p{
-    margin:6px 0;
-}
-
-
-.card button{
-    margin-top:15px;
-}
-
-
-.card h3{
-
-    margin-top:22px;
-
-    margin-bottom:10px;
-
-    font-size:24px;
-
-    letter-spacing:.3px;
-
-}
-
-
-.card p{
-
-    margin:8px 0;
-
-    line-height:1.6;
-
-}
-
-
-/* price styling */
-
-.card p:nth-of-type(1){
-
-    font-size:20px;
-
-    font-weight:500;
-
-    color:#b9879d;
-
-}
-
-
-/* luxury button */
-
-.card button{
-
-    margin-top:20px;
-
-    padding:15px;
-
-    letter-spacing:.5px;
-
-    transition:.3s;
-
-}
-
-
-.card button:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:
-    0 15px 30px rgba(185,135,157,.35);
-
-}
-.card p:nth-of-type(2){
-
-    font-size:16px;
-
-    color:#9d7187;
-
-    line-height:1.5;
-
-}
-.card h3{
-
-    font-size:26px;
-
-    letter-spacing:.5px;
-
-}
-.card img{
-
-    width:100%;
-
-    height:280px;
-
-    object-fit:cover;
-
-    object-position:center;
-
-    border-radius:28px;
-
-}
-/* ===============================
-   PREMIUM YOUR CART DESIGN
-================================ */
-
-#cart{
 
     background:
-    linear-gradient(
-        145deg,
-        #ffffff,
-        #fff5f8
-    );
 
-    padding:25px;
+    radial-gradient(
+        circle at 15% 20%,
+        rgba(255,190,215,.45),
+        transparent 35%
+    ),
 
-    border-radius:30px;
 
-    box-shadow:
-    0 15px 40px rgba(185,135,157,.15);
+    radial-gradient(
+        circle at 85% 80%,
+        rgba(230,210,245,.45),
+        transparent 40%
+    ),
 
-    margin-bottom:20px;
-
-}
-
-
-/* product inside cart */
-
-#cart h3{
-
-    color:#604957;
-
-    font-size:22px;
-
-    margin-bottom:8px;
-
-}
-
-
-#cart p{
-
-    color:#9d7187;
-
-    font-size:18px;
-
-}
-
-
-/* remove button */
-
-#cart button{
-
-    background:#c58ba5;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 30px;
-
-    border-radius:25px;
-
-    margin-top:10px;
-
-}
-
-
-#cart button:hover{
-
-    transform:translateY(-3px);
-
-}
-
-
-/* total */
-
-#total{
-
-    background:#fff;
-
-    padding:20px;
-
-    border-radius:25px;
-
-    color:#604957;
-
-    box-shadow:
-    0 10px 30px rgba(185,135,157,.12);
-
-}
-/* =================================
-   FLORAL BOUTIQUE CART DESIGN
-================================= */
-
-
-/* Cart container */
-
-#cart{
-
-    background:
-    linear-gradient(
-        145deg,
-        #ffffff,
-        #fff2f7
-    );
-
-    border-radius:40px;
-
-    padding:35px;
-
-    box-shadow:
-    0 20px 50px rgba(185,135,157,.18);
-
-    border:1px solid rgba(185,135,157,.15);
-
-}
-
-
-
-/* cart item spacing */
-
-#cart > div{
-
-    background:#fff;
-
-    border-radius:25px;
-
-    padding:20px;
-
-    margin-bottom:18px;
-
-    box-shadow:
-    0 10px 25px rgba(185,135,157,.12);
-
-    border-left:
-    5px solid #d7a0b7;
-
-}
-
-
-
-/* product name */
-
-#cart h3{
-
-    font-family:"Playfair Display",serif;
-
-    color:#604957;
-
-    font-size:23px;
-
-    margin-bottom:8px;
-
-}
-
-
-
-/* price */
-
-#cart p{
-
-    color:#b9879d;
-
-    font-size:18px;
-
-}
-
-
-
-/* remove button */
-
-#cart button{
-
-    background:#f3c7d8;
-
-    color:#6b4b58;
-
-    border:none;
-
-    border-radius:20px;
-
-    padding:10px 25px;
-
-    font-size:14px;
-
-    transition:.3s;
-
-}
-
-
-
-#cart button:hover{
-
-    background:#d89bb4;
-
-    color:white;
-
-    transform:translateY(-3px);
-
-}
-
-
-
-/* total summary */
-
-#total{
-
-    margin-top:25px;
-
-    background:
 
     linear-gradient(
         135deg,
-        #f9dce8,
-        #f5e9f8
+        #fff7fb,
+        #f8dce9
     );
 
-    padding:25px;
 
-    border-radius:30px;
+    min-height:100vh;
+
+}
+
+
+
+h1,
+h2,
+h3{
+
+    font-family:
+    "Playfair Display",
+    serif;
 
     color:#604957;
 
-    font-family:"Playfair Display",serif;
-
-    font-size:26px;
-
-    text-align:center;
-
-    box-shadow:
-    0 15px 35px rgba(185,135,157,.15);
-
 }
-/* CART PRODUCT IMAGE */
 
-.cart-item{
+
+
+
+/* ================================
+   GLASS NAVBAR
+================================ */
+
+
+header.navbar{
 
     display:flex;
 
-    gap:20px;
-
     align-items:center;
+
+    justify-content:space-between;
+
+
+    padding:20px 35px;
+
+
+    background:
+
+    rgba(255,255,255,.45);
+
+
+    backdrop-filter:
+    blur(20px);
+
+
+    -webkit-backdrop-filter:
+    blur(20px);
+
+
+    border-radius:35px;
+
+
+    border:
+    1px solid rgba(255,255,255,.7);
+
+
+    box-shadow:
+
+    0 20px 45px
+    rgba(185,135,157,.18);
+
 
 }
 
 
-.cart-image{
 
-    width:90px;
+#logo{
 
-    height:90px;
+    width:75px;
 
-    object-fit:cover;
+    height:75px;
+
+
+    object-fit:contain;
+
 
     border-radius:20px;
 
 }
 
 
-.cart-details{
+
+
+.subtitle{
+
+    color:#b9879d;
+
+    font-size:14px;
+
+}
+
+
+
+
+#ownerLink{
+
+    text-decoration:none;
+
+    color:#b9879d;
+
+}
+
+
+
+
+/* ================================
+   HERO SECTION
+================================ */
+
+
+.hero{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+    gap:50px;
+
+
+    margin:35px 0;
+
+
+    padding:70px 60px;
+
+
+    border-radius:45px;
+
+
+
+    background:
+
+    rgba(255,255,255,.45);
+
+
+
+    backdrop-filter:
+
+    blur(20px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(20px);
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    box-shadow:
+
+    0 30px 70px
+    rgba(185,135,157,.2);
+
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+}
+
+
+
+
+.hero::before{
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:300px;
+
+    height:300px;
+
+
+    background:
+
+    rgba(255,190,215,.35);
+
+
+    filter:blur(70px);
+
+
+    top:-80px;
+
+    right:-80px;
+
+
+}
+
+
+
+
+.heroText{
 
     flex:1;
 
-}
+    position:relative;
 
-
-.cart-price{
-
-    color:#b9879d;
-
-    font-weight:bold;
-
-}
-/* =================================
-   PREMIUM CUSTOMIZE SECTION
-================================= */
-
-
-#customize,
-.customize-section{
-
-    background:
-    linear-gradient(
-        145deg,
-        #ffffff,
-        #fff3f8
-    );
-
-    border-radius:40px;
-
-    padding:35px 25px;
-
-    box-shadow:
-    0 20px 50px rgba(185,135,157,.15);
+    z-index:2;
 
 }
 
 
-/* title */
 
-#customize h2,
-.customize-section h2{
 
-    color:#604957;
+.heroText h2{
 
-    font-family:"Playfair Display",serif;
+    font-size:55px;
 
-    font-size:30px;
+    line-height:1.15;
 
-    text-align:center;
+
+    letter-spacing:-1px;
 
 }
 
 
-/* dropdowns */
 
-#customize select,
-.customize-section select{
 
-    width:100%;
+.heroText p{
 
-    padding:18px;
+    font-size:18px;
 
-    margin:10px 0;
 
-    border-radius:25px;
+    color:#8f687b;
 
-    border:1px solid #ead3dd;
 
-    background:#fff;
+    max-width:480px;
 
-    color:#604957;
 
-    font-size:16px;
+    line-height:1.7;
 
 }
 
 
-/* message box */
-
-#customize textarea,
-.customize-section textarea{
-
-    width:100%;
-
-    min-height:100px;
-
-    padding:18px;
-
-    border-radius:25px;
-
-    border:1px solid #ead3dd;
-
-    resize:none;
-
-}
 
 
-/* buttons */
 
-#customize button,
-.customize-section button{
+.heroText button,
+button{
 
-    background:#c58ba5;
-
-    color:white;
 
     border:none;
 
-    border-radius:30px;
 
-    padding:15px 30px;
+    cursor:pointer;
 
-    margin-top:15px;
 
-    font-size:15px;
+    padding:15px 32px;
 
-    width:100%;
-
-    transition:.3s;
-
-}
-
-
-#customize button:hover,
-.customize-section button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-    0 10px 25px rgba(185,135,157,.25);
-
-}
-/* =================================
- PREMIUM CUSTOM BOUQUET POLISH
-================================= */
-
-
-select{
-
-    appearance:none;
-
-    background:
-    #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23c58ba5' d='M4 6l4 4 4-4z'/%3E%3C/svg%3E")
-    no-repeat right 18px center;
-
-    background-size:16px;
-
-    padding-right:50px !important;
-
-}
-
-
-/* space buttons */
-
-#customize button{
-
-    margin-top:18px;
-
-}
-
-
-/* preview button */
-
-#customPreview{
-
-    margin-top:20px;
-
-    padding:20px;
-
-    border-radius:25px;
-
-    background:#fff7fa;
-
-    color:#8b6173;
-
-    text-align:center;
-
-}
-/* ===============================
- CUSTOM BOUQUET BUTTON STYLE
-================================ */
-
-
-#customize button:first-of-type{
-
-    background:white;
-
-    color:#b9879d;
-
-    border:2px solid #d7a0b7;
-
-}
-
-
-#customize button:first-of-type:hover{
-
-    background:#fce8f0;
-
-}
-
-
-
-/* main customize cart button */
-
-#customize button:last-of-type{
-
-    background:#c58ba5;
-
-    color:white;
-
-    margin-top:20px;
-
-}
-
-
-
-/* button spacing */
-
-#customize button{
-
-    display:block;
-
-    width:100%;
-
-    border-radius:30px;
-
-}
-/* ===============================
-   GLASS PINK NOTIFICATION
-================================ */
-
-.notification{
-
-    position:fixed;
-
-    bottom:30px;
-
-    right:30px;
-
-    background:
-    rgba(255, 220, 235, 0.65);
-
-    backdrop-filter:blur(15px);
-
-    -webkit-backdrop-filter:blur(15px);
-
-    color:#604957;
-
-    padding:16px 28px;
-
-    border-radius:30px;
-
-    border:1px solid rgba(255,255,255,.5);
-
-    box-shadow:
-    0 15px 40px rgba(185,135,157,.25);
-
-    z-index:9999;
-
-    animation:notificationIn .4s ease;
-
-}
-
-
-@keyframes notificationIn{
-
-from{
-opacity:0;
-transform:translateY(30px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-#checkoutBtn{
-
-    width:100%;
-
-    margin-top:20px;
-
-    padding:18px;
-
-    border:none;
 
     border-radius:35px;
 
+
     background:
+
+
     linear-gradient(
         135deg,
         #d89bb4,
         #c58ba5
     );
 
-    color:white;
-
-    font-size:16px;
-
-    letter-spacing:.5px;
-
-    box-shadow:
-    0 15px 30px rgba(185,135,157,.25);
-
-    transition:.3s;
-
-}
-
-
-#checkoutBtn:hover{
-
-    transform:translateY(-3px);
-
-}
-/* =========================
- PREMIUM GLASS BOUTIQUE THEME
-========================= */
-
-body{
-
-    background:
-    radial-gradient(circle at 20% 20%,
-    rgba(255,190,215,.45),
-    transparent 35%),
-
-    radial-gradient(circle at 80% 10%,
-    rgba(255,220,235,.6),
-    transparent 40%),
-
-    linear-gradient(
-    135deg,
-    #fff5fa,
-    #f8dbe8
-    );
-
-    min-height:100vh;
-
-    color:#5b3a4d;
-
-}
-
-
-/* Glass containers */
-
-section,
-.card,
-.custom,
-#cart,
-.order,
-.panel{
-
-    background:
-    rgba(255,255,255,.45);
-
-    backdrop-filter:
-    blur(18px);
-
-    -webkit-backdrop-filter:
-    blur(18px);
-
-
-    border:
-    1px solid rgba(255,255,255,.6);
-
-
-    box-shadow:
-    0 20px 40px
-    rgba(180,120,150,.18);
-
-
-    border-radius:30px;
-
-}
-
-
-/* Navbar */
-
-.navbar{
-
-    background:
-    rgba(255,255,255,.35);
-
-    backdrop-filter:
-    blur(20px);
-
-
-    border-radius:25px;
-
-    box-shadow:
-    0 10px 30px
-    rgba(180,120,150,.15);
-
-}
-
-
-
-/* Buttons */
-
-button{
-
-    background:
-    linear-gradient(
-    135deg,
-    #d88cab,
-    #c7779a
-    );
 
 
     color:white;
 
-    border:none;
 
-    border-radius:30px;
-
-    padding:14px 28px;
+    font-size:15px;
 
 
     box-shadow:
-    0 10px 20px
-    rgba(200,120,150,.25);
+
+
+    0 15px 35px
+    rgba(197,139,165,.3);
+
 
 
     transition:.3s;
 
+
 }
+
 
 
 
 button:hover{
 
+
     transform:
-    translateY(-3px);
+    translateY(-4px);
+
+
+    box-shadow:
+
+
+    0 20px 40px
+    rgba(197,139,165,.35);
+
+
+}
+
+
+
+
+
+.heroImage{
+
+
+    flex:1;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    position:relative;
+
+
+}
+
+
+
+
+.flowerCircle{
+
+
+    width:390px;
+
+
+    height:390px;
+
+
+    border-radius:50%;
+
+
+
+    background:
+
+    rgba(255,255,255,.35);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    border:
+
+    8px solid rgba(255,255,255,.5);
+
+
+
+    box-shadow:
+
+
+    0 35px 80px
+    rgba(185,135,157,.3);
+
+
+
+    animation:
+
+    bouquetFloat 5s ease-in-out infinite;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+.flowerCircle img{
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+    object-fit:cover;
+
+
+}
+
+
+
+
+@keyframes bouquetFloat{
+
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+
+}
+/* =====================================
+   L'ATELIER SYNE
+   LUXURY FLORAL GLASS THEME
+   PART 2/3
+===================================== */
+
+
+
+/* ================================
+   GENERAL SECTIONS
+================================ */
+
+
+section{
+
+    background:
+
+    rgba(255,255,255,.45);
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+    -webkit-backdrop-filter:
+
+    blur(18px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.65);
+
+
+    border-radius:40px;
+
+
+    padding:35px;
+
+
+    margin:30px 0;
+
+
+    box-shadow:
+
+
+    0 25px 60px
+    rgba(185,135,157,.15);
+
+
+}
+
+
+
+
+/* ================================
+   PRODUCT COLLECTION
+================================ */
+
+
+.grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(240px,1fr));
+
+
+    gap:30px;
+
+
+}
+
+
+
+
+.card{
+
+
+    background:
+
+
+    rgba(255,255,255,.55);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(15px);
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    border-radius:35px;
+
+
+
+    padding:22px;
+
+
+
+    overflow:hidden;
+
+
+
+    box-shadow:
+
+
+    0 20px 45px
+    rgba(185,135,157,.15);
+
+
+
+    transition:.4s ease;
+
+
+
+}
+
+
+
+
+.card:hover{
+
+
+    transform:
+
+    translateY(-10px);
+
+
+
+    box-shadow:
+
+
+    0 30px 70px
+    rgba(185,135,157,.25);
+
+
+
+}
+
+
+
+
+
+.card img{
+
+
+    width:100%;
+
+
+    height:280px;
+
+
+    object-fit:cover;
+
+
+    border-radius:28px;
+
+
+
+}
+
+
+
+
+.card h3{
+
+
+    font-size:25px;
+
+
+    margin-top:20px;
+
+
+    color:#604957;
+
+
+
+}
+
+
+
+
+.card p{
+
+
+    color:#9d7187;
+
+
+    line-height:1.6;
+
+
+
+}
+
+
+
+
+.card .price{
+
+
+    color:#b9879d;
+
+
+    font-size:20px;
+
+
+    font-weight:600;
+
+
+    margin:10px 0;
+
+
+
+}
+
+
+
+
+
+.card button{
+
+
+    width:100%;
+
+
+    margin-top:15px;
+
+
+
+}
+
+
+
+
+
+/* ================================
+   CUSTOMIZE BOUQUET
+================================ */
+
+
+
+#customize,
+.customize-section{
+
+
+    background:
+
+
+    rgba(255,255,255,.5);
+
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+
+    border-radius:40px;
+
+
+    padding:40px 30px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    box-shadow:
+
+
+    0 25px 60px
+    rgba(185,135,157,.15);
+
+
+
+}
+
+
+
+
+#customize h2,
+.customize-section h2{
+
+
+    text-align:center;
+
+
+    font-size:32px;
+
+
+    color:#604957;
+
+
+
+}
+
+
+
+
+input,
+textarea,
+select{
+
+
+    width:100%;
+
+
+    max-width:500px;
+
+
+    display:block;
+
+
+    margin:14px auto;
+
+
+    padding:17px 20px;
+
+
+    border-radius:25px;
+
+
+
+    border:
+
+    1px solid rgba(185,135,157,.25);
+
+
+
+    background:
+
+
+    rgba(255,255,255,.7);
+
+
+
+    color:#604957;
+
+
+    font-size:16px;
+
+
+
+    outline:none;
+
+
+
+}
+
+
+
+
+input:focus,
+textarea:focus,
+select:focus{
+
+
+    border-color:#d89bb4;
+
+
+    box-shadow:
+
+    0 0 20px
+    rgba(216,155,180,.25);
+
+
+
+}
+
+
+
+
+
+#customPreview{
+
+
+    margin-top:25px;
+
+
+    padding:25px;
+
+
+    border-radius:30px;
+
+
+
+    background:
+
+
+    rgba(255,240,247,.7);
+
+
+
+    color:#8b6173;
+
+
+    text-align:center;
+
+
+
+    box-shadow:
+
+
+    inset 0 0 20px
+    rgba(185,135,157,.1);
+
+
+
+}
+
+
+
+
+/* ================================
+   CART DESIGN
+================================ */
+
+
+#cart{
+
+
+    background:
+
+
+    rgba(255,255,255,.5);
+
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+
+    border-radius:40px;
+
+
+
+    padding:35px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    box-shadow:
+
+
+    0 25px 60px
+    rgba(185,135,157,.18);
+
+
+
+}
+
+
+
+
+.cart-item{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:20px;
+
+
+    padding:20px;
+
+
+    margin-bottom:18px;
+
+
+
+    background:
+
+
+    rgba(255,255,255,.65);
+
+
+
+    border-radius:30px;
+
+
+
+    box-shadow:
+
+
+    0 10px 30px
+    rgba(185,135,157,.12);
+
+
+
+}
+
+
+
+
+.cart-image{
+
+
+    width:90px;
+
+
+    height:90px;
+
+
+    object-fit:cover;
+
+
+    border-radius:22px;
+
+
+
+}
+
+
+
+
+.cart-details{
+
+
+    flex:1;
+
+
+}
+
+
+
+.cart-details h3{
+
+
+    margin:0 0 10px;
+
+
+    font-size:22px;
+
+
+
+}
+
+
+
+
+.cart-price{
+
+
+    color:#b9879d;
+
+
+    font-weight:600;
+
+
+
+}
+
+
+
+
+#cart button{
+
+
+    background:
+
+
+    #f3c7d8;
+
+
+    color:#604957;
+
+
+}
+
+
+
+#cart button:hover{
+
+
+    background:#d89bb4;
+
+
+    color:white;
+
+
+
+}
+
+
+
+
+#total{
+
+
+    margin-top:25px;
+
+
+    padding:25px;
+
+
+    border-radius:30px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #f9dce8,
+
+    #f5e9f8
+
+    );
+
+
+
+    text-align:center;
+
+
+    font-family:"Playfair Display",serif;
+
+
+    font-size:26px;
+
+
+    color:#604957;
+
+
+
+}
+/* =====================================
+   L'ATELIER SYNE
+   LUXURY FLORAL GLASS THEME
+   PART 3/3
+===================================== */
+
+
+
+/* ================================
+   CHECKOUT BUTTON
+================================ */
+
+
+#checkoutBtn{
+
+
+    width:100%;
+
+
+    margin-top:25px;
+
+
+    padding:18px;
+
+
+
+    border-radius:35px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #d89bb4,
+
+    #c58ba5
+
+    );
+
+
+
+    color:white;
+
+
+
+    font-size:17px;
+
+
+
+    letter-spacing:.5px;
+
+
+
+    box-shadow:
+
+
+    0 15px 35px
+    rgba(197,139,165,.35);
+
+
+
+}
+
+
+
+
+#checkoutBtn:hover{
+
+
+    transform:
+
+    translateY(-5px);
+
+
+
+}
+
+
+
+/* ================================
+   ORDER DETAILS FORM
+================================ */
+
+
+
+#orderDetails{
+
+
+    background:
+
+
+    rgba(255,255,255,.5);
+
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+
+    border-radius:40px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    box-shadow:
+
+
+    0 25px 60px
+    rgba(185,135,157,.18);
+
+
+
+}
+
+
+
+
+
+#orderDetails h2{
+
+
+    text-align:center;
+
+
+    font-size:32px;
+
+
+
+}
+
+
+
+
+#orderDetails input,
+#orderDetails textarea,
+#orderDetails select{
+
+
+    background:
+
+
+    rgba(255,255,255,.75);
+
+
+
+}
+
+
+
+/* ================================
+   TRACK ORDER
+================================ */
+
+
+#trackResult{
+
+
+    margin-top:20px;
+
+
+    padding:25px;
+
+
+    border-radius:30px;
+
+
+
+    background:
+
+
+    rgba(255,255,255,.55);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    color:#604957;
+
+
+
+    box-shadow:
+
+
+    0 15px 40px
+    rgba(185,135,157,.15);
+
+
+
+}
+
+
+
+/* ================================
+   PINK GLASS TOAST
+================================ */
+
+
+
+#toast{
+
+
+    position:fixed;
+
+
+    top:90px;
+
+
+    left:50%;
+
+
+    transform:translateX(-50%);
+
+
+
+    background:
+
+
+    rgba(255,210,230,.75);
+
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(18px);
+
+
+
+    padding:
+
+
+    16px 30px;
+
+
+
+    border-radius:35px;
+
+
+
+    color:#604957;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+
+    box-shadow:
+
+
+    0 20px 50px
+    rgba(185,135,157,.25);
+
+
+
+    opacity:0;
+
+
+    pointer-events:none;
+
+
+
+    transition:.4s;
+
+
+
+    z-index:9999;
+
+
+
+}
+
+
+
+#toast.show{
+
+
+    opacity:1;
+
+
+    top:110px;
+
+
+
+}
+
+
+
+/* ================================
+   FLOATING PETALS
+================================ */
+
+
+#petals{
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    pointer-events:none;
+
+
+    z-index:999;
+
+
+
+}
+
+
+
+#petals span{
+
+
+    filter:
+
+    blur(.3px);
+
+
+
+    opacity:.25;
+
+
+
+    text-shadow:
+
+
+    0 5px 15px
+    rgba(185,135,157,.3);
+
+
+
+}
+
+
+
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
+
+
+@media(max-width:768px){
+
+
+body{
+
+    padding:15px;
+
+}
+
+
+
+header.navbar{
+
+
+    padding:18px;
+
+
+}
+
+
+
+.hero{
+
+
+    flex-direction:column;
+
+
+    padding:40px 25px;
+
+
+
+}
+
+
+
+.heroText h2{
+
+
+    font-size:38px;
+
+
+
+}
+
+
+
+.flowerCircle{
+
+
+    width:260px;
+
+
+    height:260px;
+
+
+
+}
+
+
+
+section{
+
+
+    padding:25px;
+
+
+
+}
+
+
+
+.cart-item{
+
+
+    flex-direction:column;
+
+
+    text-align:center;
+
+
+
+}
+
+
+
+.card img{
+
+
+    height:240px;
+
+
+
+}
+
+
 
 }

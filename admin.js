@@ -241,8 +241,7 @@ async function showProducts(){
 
 const productList =
 document.getElementById("productList");
-
-
+if(!productList) return;
 productList.innerHTML="";
 
 
@@ -351,8 +350,7 @@ async function showOrders(){
 
 const orderList =
 document.getElementById("orderList");
-
-
+if(!orderList) return;
 orderList.innerHTML = "";
 
 

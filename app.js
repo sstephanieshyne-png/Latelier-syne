@@ -211,7 +211,7 @@ let addonData = JSON.parse(localStorage.getItem("addons")) || [];
 
 
 let selectedFlower = flowerData.find(
-item => item.name === flower
+item => flower.includes(item.name)
 );
 
 
@@ -235,7 +235,7 @@ quantity.replace(" pcs","")
 
 
 if(selectedFlower){
-
+console.log("FLOWER FOUND:", selectedFlower);
 price += Number(selectedFlower.price) * quantityNumber;
 
 }

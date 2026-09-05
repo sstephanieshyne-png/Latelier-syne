@@ -1082,6 +1082,7 @@ showProducts();
 showOrders();
 
 showCustomizeOptions();
+console.log("ADMIN JS LOADED");
 // ======================
 // SHOP SETTINGS
 // ======================

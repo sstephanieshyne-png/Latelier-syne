@@ -211,7 +211,7 @@ let addonData = JSON.parse(localStorage.getItem("addons")) || [];
 
 
 let selectedFlower = flowerData.find(
-item => flower.includes(item.name)
+item => flower.toLowerCase().includes(item.name.toLowerCase())
 );
 
 

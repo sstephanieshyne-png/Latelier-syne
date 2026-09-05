@@ -1,9 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { 
-getFirestore, 
-collection, 
-getDocs, 
+import {
+getFirestore,
+collection,
+getDocs,
 addDoc,
 doc,
 getDoc
@@ -15,23 +15,67 @@ getDoc
 // ======================
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
-  authDomain: "latelier-syne.firebaseapp.com",
-  projectId: "latelier-syne",
-  storageBucket: "latelier-syne.firebasestorage.app",
-  messagingSenderId: "785009872575",
-  appId: "1:785009872575:web:cb2b2ac9dd51fe823b800a",
-  measurementId: "G-PVBCNJTSTW"
+
+apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
+
+authDomain: "latelier-syne.firebaseapp.com",
+
+projectId: "latelier-syne",
+
+storageBucket: "latelier-syne.firebasestorage.app",
+
+messagingSenderId: "785009872575",
+
+appId: "1:785009872575:web:cb2b2ac9dd51fe823b800a",
+
+measurementId:"G-PVBCNJTSTW"
+
 };
 
 
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
+
+
+
 // ======================
-// LOAD SHOP SETTINGS
+// TOAST
 // ======================
 
+
+function showToast(message){
+
+const toast = document.getElementById("toast");
+
+if(!toast) return;
+
+
+toast.innerHTML = message;
+
+toast.classList.add("show");
+
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
+
+
+}
+
+
+
+// ======================
+// SHOP SETTINGS
+// ======================
+
+
 async function loadShopSettings(){
+
+try{
+
 
 const snap = await getDoc(
 doc(db,"settings","shopInfo")
@@ -39,6 +83,7 @@ doc(db,"settings","shopInfo")
 
 
 if(snap.exists()){
+
 
 const data = snap.data();
 
@@ -50,34 +95,32 @@ document.getElementById("shopName");
 const tagline =
 document.getElementById("tagline");
 
+
 const facebook =
 document.getElementById("facebookLink");
 
 
 const contact =
-document.getElementById("contactInfo");  
+document.getElementById("contactInfo");
 
 
-if(shop){
 
+if(shop)
 shop.innerHTML =
 data.shop || "L’Atelier Syne";
 
-}
 
 
-
-if(tagline){
-
+if(tagline)
 tagline.innerHTML =
 data.tag || "Flowers made for your sweetest moments.";
 
-}
+
+
 if(facebook){
 
 facebook.href =
 data.facebook || "#";
-
 
 facebook.innerHTML =
 data.facebook || "Visit our page";
@@ -89,361 +132,427 @@ data.facebook || "Visit our page";
 if(contact){
 
 contact.innerHTML =
-data.contact && data.contact.trim() !== ""
-? data.contact
-: "Contact us for inquiries";
+data.contact || "Contact us for inquiries";
 
 }
 
-}
+
 
 }
 
+
+}catch(error){
+
+console.log("Settings error:",error);
+
+}
+
+
+}
 
 
 loadShopSettings();
 
-// ======================
-// PREMIUM TOAST NOTIFICATION
-// ======================
-
-function showToast(message){
-
-    const toast = document.getElementById("toast");
-
-    if(!toast) return;
-
-
-    toast.innerHTML = message;
-
-    toast.classList.add("show");
-
-
-    setTimeout(()=>{
-
-        toast.classList.remove("show");
-
-    },2500);
-
-}
 
 
 
 // ======================
-// LOAD PRODUCTS
+// PRODUCTS
 // ======================
 
-let box = document.getElementById("products");
+
+const productBox =
+document.getElementById("products");
+
 
 
 async function loadProducts(){
 
-  const snapshot = await getDocs(
-    collection(db,"products")
-  );
+
+if(!productBox) return;
 
 
-  snapshot.forEach((doc)=>{
-
-    let p = doc.data();
+productBox.innerHTML="";
 
 
-    box.innerHTML += `
-
-    <div class="card">
-
-      ${p.image 
-      ? `<img src="${p.image}">`
-      : `<div class="photo-placeholder">🌸</div>`
-      }
+try{
 
 
-      <h3>${p.name}</h3>
-
-      <div class="price">
-      ₱${p.price}
-      </div>
-
-
-      <p>${p.desc}</p>
+const snapshot =
+await getDocs(
+collection(db,"products")
+);
 
 
-      <button onclick='addToCart(${JSON.stringify(p)})'>
-      Add to Cart
-      </button>
+
+snapshot.forEach((item)=>{
 
 
-    </div>
+const p = item.data();
 
-    `;
 
-  });
+
+productBox.innerHTML += `
+
+
+<div class="card">
+
+
+${p.image ?
+
+`<img src="${p.image}">`
+
+:
+
+`<div class="photo-placeholder">🌸</div>`
 
 }
 
 
-loadProducts();
+
+<h3>${p.name}</h3>
 
 
-// ======================
-// CUSTOM BOUQUET PREVIEW
-// ======================
-async function preview(){
-
-const flower = document.getElementById("flower").value;
-const color = document.getElementById("color").value;
-const wrapper = document.getElementById("wrapper").value;
-const addon = document.getElementById("addon").value;
-
-const quantity = document.getElementById("quantity").value
-) || 1;
-const style = document.getElementById("style").value;
-const occasion = document.getElementById("occasion").value;
-const message = document.getElementById("message").value;
+<div class="price">
+₱${p.price}
+</div>
 
 
-let price = 0;
+<p>
+${p.desc || ""}
+</p>
 
 
-// GET FLOWER PRICE FROM FIREBASE
-const flowerSnap = await getDocs(
-    collection(db,"customFlowers")
-);
+<button onclick='addToCart(${JSON.stringify(p)})'>
 
+Add to Cart
 
-flowerSnap.forEach((doc)=>{
-
-    const data = doc.data();
-
-    if(data.name === flower){
-
-        price += Number(data.price)* quantity;
-
-    }
-
-});
-
-
-// GET WRAPPER PRICE
-
-const wrapperSnap = await getDocs(
-    collection(db,"customWrappers")
-);
-
-
-wrapperSnap.forEach((doc)=>{
-
-    const data = doc.data();
-
-    if(data.name === wrapper){
-
-        price += Number(data.price);
-
-    }
-
-});
-
-
-// GET ADDON PRICE
-
-const addonSnap = await getDocs(
-    collection(db,"customAddons")
-);
-
-
-addonSnap.forEach((doc)=>{
-
-    const data = doc.data();
-
-    if(data.name === addon){
-
-        price += Number(data.price);
-
-    }
-
-});
+</button>
 
 
 
-// SHOW PREVIEW
-
-document.getElementById("customPreview").innerHTML = `
-
-
-🌸 Flower: ${flower}<br>
-
-🎨 Color: ${color}<br>
-
-🎀 Wrapper: ${wrapper}<br>
-
-🌷 Quantity: ${quantity}<br>
-
-✨ Style: ${style}<br>
-
-💐 Occasion: ${occasion}<br>
-
-🍫 Add-on: ${addon}<br>
-
-💌 Message: ${message}<br>
-
-
-<br>
-
-
-<b>Estimated Price: ₱${price}</b>
+</div>
 
 
 `;
 
 
+});
 
-// SAVE FOR CART
 
-window.customBouquet = {
 
-name:"Custom Bouquet",
+}catch(error){
 
-flower:flower,
+console.log("Products error:",error);
 
-color:color,
-
-wrapper:wrapper,
-
-quantity:quantity,
-
-style:style,
-
-occasion:occasion,
-
-addon:addon,
-
-message:message,
-
-price:price
-
-};
+}
 
 
 }
 
 
+
+loadProducts();
+
+
+
+
 // ======================
-// SUBMIT ORDER
+// CUSTOM BOUQUET VARIABLES
 // ======================
 
-async function submitOrder(){
 
-let orders =
-JSON.parse(localStorage.orders || '[]');
-
-
-const orderData = {
-
-customer:customer.value,
-
-phone:phone.value,
-
-address:address.value,
-
-items:cart,
-
-notes:notes.value,
-
-custom:
-document.getElementById('customPreview').innerHTML,
-
-date:new Date().toLocaleString()
-
-};
-
-
-orders.push(orderData);
-
-
-localStorage.orders =
-JSON.stringify(orders);
+window.customBouquet = null;
 
 
 
-await addDoc(
-collection(db,"orders"),
-{
+// ======================
+// CUSTOM PREVIEW
+// ======================
 
-customer:customer.value,
 
-phone:phone.value,
+async function preview(){
 
-address:address.value,
 
-items:cart,
+const flower =
+document.getElementById("flower")?.value || "";
 
-notes:notes.value,
 
-custom:
-document.getElementById('customPreview').innerHTML,
+const color =
+document.getElementById("color")?.value || "";
 
-status:"Pending",
 
-date:new Date().toLocaleString()
+const wrapper =
+document.getElementById("wrapper")?.value || "";
 
-}
 
+const addon =
+document.getElementById("addon")?.value || "";
+
+
+const quantity =
+Number(
+document.getElementById("quantity")?.value || 1
 );
 
 
 
-showToast("🌸 Order submitted successfully!");
+const style =
+document.getElementById("style")?.value || "";
+
+
+const occasion =
+document.getElementById("occasion")?.value || "";
+
+
+const message =
+document.getElementById("message")?.value || "";
+
+
+
+let price = 0;
+
+
+
+try{
+
+
+// FLOWER PRICE
+
+const flowerSnap =
+await getDocs(
+collection(db,"customFlowers")
+);
+
+
+
+flowerSnap.forEach((item)=>{
+
+
+const data = item.data();
+
+
+if(data.name === flower){
+
+price +=
+Number(data.price || 0)
+*
+quantity;
+
+
+}
+
+
+});
+  id="7km8ok"
+    
+// WRAPPER PRICE
+
+const wrapperSnap =
+await getDocs(
+collection(db,"customWrappers")
+);
+
+
+wrapperSnap.forEach((item)=>{
+
+
+const data = item.data();
+
+
+if(data.name === wrapper){
+
+price += Number(data.price || 0);
+
+
+}
+
+
+});
+
+
+
+// ADDON PRICE
+
+const addonSnap =
+await getDocs(
+collection(db,"customAddons")
+);
+
+
+addonSnap.forEach((item)=>{
+
+
+const data = item.data();
+
+
+if(data.name === addon){
+
+price += Number(data.price || 0);
+
+
+}
+
+
+});
+
+
+
+}catch(error){
+
+console.log("Customize price error:",error);
 
 }
 
 
 
-// ======================
-// PAYMENT METHOD
-// ======================
+// SHOW PREVIEW
 
-function getPaymentMethod(){
 
-const payment =
-document.getElementById('paymentMethod');
+const previewBox =
+document.getElementById("customPreview");
 
-return payment ? payment.value : '';
+
+if(previewBox){
+
+
+previewBox.innerHTML = `
+
+
+🌸 Flower: ${flower || "None"}
+
+<br><br>
+
+
+🎨 Color: ${color || "None"}
+
+<br><br>
+
+
+🎀 Wrapper: ${wrapper || "None"}
+
+<br><br>
+
+
+🌷 Quantity: ${quantity} pcs
+
+<br><br>
+
+
+✨ Style: ${style || "None"}
+
+<br><br>
+
+
+🌺 Occasion: ${occasion || "None"}
+
+<br><br>
+
+
+🎁 Add-on: ${addon || "None"}
+
+<br><br>
+
+
+💌 Message: ${message || "None"}
+
+
+
+<h3>
+
+Estimated Price: ₱${price}
+
+</h3>
+
+
+`;
 
 }
 
 
 
+const priceBox =
+document.getElementById("estimatedPrice");
+
+
+if(priceBox){
+
+priceBox.innerHTML =
+`Estimated Price: ₱${price}`;
+
+}
+
+
+
+window.customBouquet = {
+
+
+flower,
+
+color,
+
+wrapper,
+
+addon,
+
+quantity,
+
+style,
+
+occasion,
+
+message,
+
+price
+
+
+};
+
+
+
+}
+
+
+
+window.preview = preview;
+
+
+
+
 // ======================
-// CART SYSTEM
+// CART
 // ======================
 
 
 let cart =
-JSON.parse(localStorage.cart || "[]");
+JSON.parse(localStorage.getItem("cart")) || [];
 
 
 
 function addToCart(product){
 
+
 cart.push(product);
 
 
-localStorage.cart =
-JSON.stringify(cart);
-
-
-
-showToast(
-"🌸 " + product.name + " added to cart!"
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
 );
 
 
+showToast("🌸 Added to cart");
 
-showCart();
 
 }
 
 
+
+window.addToCart =
+addToCart;
+// ======================
+// ADD CUSTOM BOUQUET
+// ======================
 
 
 function addCustomBouquet(){
@@ -451,29 +560,35 @@ function addCustomBouquet(){
 
 if(!window.customBouquet){
 
+
 showToast(
-"🌸 Please preview your custom bouquet first"
+"🌸 Please preview your bouquet first"
 );
 
+
 return;
+
 
 }
 
 
 
-cart.push(window.customBouquet);
+cart.push(
+window.customBouquet
+);
 
 
 
-localStorage.cart =
-JSON.stringify(cart);
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 
 
 
 showToast(
-"🌸 Custom Bouquet added to cart!"
+"🌸 Custom bouquet added!"
 );
-
 
 
 showCart();
@@ -488,21 +603,32 @@ addCustomBouquet;
 
 
 
+
+// ======================
+// SHOW CART
+// ======================
+
+
 function showCart(){
 
-let cartBox =
+
+const cartBox =
 document.getElementById("cart");
 
 
-let totalBox =
+const totalBox =
 document.getElementById("total");
+
+
+
+if(!cartBox) return;
 
 
 
 cartBox.innerHTML="";
 
 
-let total=0;
+let total = 0;
 
 
 
@@ -515,22 +641,9 @@ cartBox.innerHTML += `
 <div class="cart-item">
 
 
-${
-item.image
-?
-`
-<img class="cart-image" src="${item.image}">
-`
-:
-""
-}
-
-
-
-<div class="cart-details">
-
-
-<h3>${item.name}</h3>
+<h3>
+${item.name}
+</h3>
 
 
 
@@ -545,19 +658,20 @@ item.flower
 
 <p>🎀 Wrapper: ${item.wrapper}</p>
 
-<p>💌 Message: ${item.message}</p>
+<p>🌷 Quantity: ${item.quantity} pcs</p>
 
 `
 :
+
 ""
+
 }
 
 
 
-<p class="cart-price">
+<p>
 ₱${item.price}
 </p>
-
 
 
 <button onclick="removeCart(${index})">
@@ -567,10 +681,6 @@ Remove
 </button>
 
 
-
-</div>
-
-
 </div>
 
 
@@ -578,21 +688,37 @@ Remove
 
 
 
-total += Number(item.price);
-
+total += Number(item.price || 0);
 
 
 });
 
 
 
+if(totalBox){
+
 totalBox.innerHTML =
 "Total: ₱" + total;
+
+}
+
 
 
 }
 
 
+
+
+window.showCart =
+showCart;
+
+
+
+
+
+// ======================
+// REMOVE CART
+// ======================
 
 
 function removeCart(index){
@@ -602,13 +728,9 @@ cart.splice(index,1);
 
 
 
-localStorage.cart =
-JSON.stringify(cart);
-
-
-
-showToast(
-"🌸 Item removed from cart"
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
 );
 
 
@@ -616,414 +738,239 @@ showToast(
 showCart();
 
 
-}
-// ======================
-// TRACK ORDER
-// ======================
-
-async function trackOrder(){
-
-let phoneNumber =
-document.getElementById("trackPhone").value;
-
-
-let result =
-document.getElementById("trackResult");
-
-
-
-if(!phoneNumber){
-
-result.innerHTML =
-"Please enter your contact number.";
-
-return;
-
-}
-
-
-
-const snapshot =
-await getDocs(
-collection(db,"orders")
+showToast(
+"🌸 Item removed"
 );
 
 
 
-let found=false;
-
-
-
-snapshot.forEach((doc)=>{
-
-
-let order = doc.data();
-
-
-
-if(order.phone === phoneNumber){
-
-
-found=true;
-
-
-
-result.innerHTML = `
-
-<h3>
-Order Found 🌸
-</h3>
-
-
-<p>
-Name: ${order.customer}
-</p>
-
-
-<p>
-Date: ${order.date}
-</p>
-
-
-<p>
-Status: ${order.status || "Pending"}
-</p>
-
-`;
-
 }
 
-});
-
-
-
-if(!found){
-
-result.innerHTML =
-"No order found.";
-
-}
-
-}
-
-
-// ======================
-// CONTINUOUS FLOATING PETALS
-// ======================
-
-const petals =
-document.getElementById("petals");
-
-
-if(petals){
-
-
-const flowers = [
-"🌸",
-"🌷",
-"🌺"
-];
-
-
-function createPetal(){
-
-
-const flower =
-document.createElement("span");
-
-
-flower.innerHTML =
-flowers[
-Math.floor(Math.random()*flowers.length)
-];
-
-
-
-flower.style.position="fixed";
-
-flower.style.top="-40px";
-
-flower.style.left =
-Math.random()*100+"vw";
-
-
-flower.style.fontSize =
-(16 + Math.random()*10)+"px";
-
-
-flower.style.opacity="0.25";
-
-
-flower.style.zIndex="999";
-
-
-flower.style.filter="blur(1px)";
-
-
-
-petals.appendChild(flower);
-
-
-
-const duration =
-12000 + Math.random()*8000;
-
-
-
-flower.animate(
-
-[
-{
-transform:"translateY(-50px) rotate(0deg)",
-opacity:0
-},
-
-{
-opacity:.25
-},
-
-{
-transform:
-`translateY(110vh) rotate(360deg)`,
-opacity:0
-}
-
-],
-
-{
-duration:duration,
-easing:"linear"
-}
-
-);
-
-
-
-setTimeout(()=>{
-
-flower.remove();
-
-},duration);
-
-
-
-}
-
-
-
-// create one every few seconds
-
-setInterval(()=>{
-
-createPetal();
-
-},2500);
-
-
-
-}
-
-
-// =============================
-// LOAD CUSTOMIZE OPTIONS
-// =============================
-
-
-async function loadCustomizeOptions(){
-
-
-// FLOWERS
-
-const flowerSnap =
-await getDocs(
-collection(db,"customFlowers")
-);
-
-
-const flowerSelect =
-document.getElementById("flower");
-
-
-flowerSelect.innerHTML="";
-
-
-flowerSnap.forEach((doc)=>{
-
-
-flowerSelect.innerHTML += `
-
-<option>
-
-${doc.data().name}
-
-</option>
-
-`;
-
-});
-
-
-
-// COLORS
-
-const colorSnap =
-await getDocs(
-collection(db,"customColors")
-);
-
-
-const colorSelect =
-document.getElementById("color");
-
-
-colorSelect.innerHTML="";
-
-
-colorSnap.forEach((doc)=>{
-
-
-colorSelect.innerHTML += `
-
-<option>
-
-${doc.data().name}
-
-</option>
-
-`;
-
-});
-
-
-
-// WRAPPERS
-
-const wrapperSnap =
-await getDocs(
-collection(db,"customWrappers")
-);
-
-
-const wrapperSelect =
-document.getElementById("wrapper");
-
-
-wrapperSelect.innerHTML="";
-
-
-wrapperSnap.forEach((doc)=>{
-
-
-wrapperSelect.innerHTML += `
-
-<option>
-
-${doc.data().name}
-
-</option>
-
-`;
-
-});
-
-
-
-// ADDONS
-
-const addonSnap =
-await getDocs(
-collection(db,"customAddons")
-);
-
-
-const addonSelect =
-document.getElementById("addon");
-
-
-addonSelect.innerHTML =
-`
-<option value="">
-No Add-on
-</option>
-`;
-
-
-
-addonSnap.forEach((doc)=>{
-
-
-addonSelect.innerHTML += `
-
-<option>
-
-${doc.data().name}
-
-</option>
-
-`;
-
-});
-
-
-}
-
-
-
-loadCustomizeOptions();
-
-
-
-
-// ======================
-// CHECKOUT
-// ======================
-
-
-window.goCheckout = function(){
-
-const orderSection =
-document.getElementById("orderDetails");
-
-
-if(orderSection){
-
-orderSection.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-}
-
-};
-
-
-
-// ======================
-// EXPORT FUNCTIONS
-// ======================
-
-
-window.addToCart =
-addToCart;
-
-
-window.preview =
-preview;
-
-
-window.submitOrder =
-submitOrder;
-
-
-window.showCart =
-showCart;
 
 
 window.removeCart =
 removeCart;
 
 
+
+
+
+// ======================
+// LOAD CUSTOMIZE OPTIONS
+// ======================
+
+
+async function loadCustomizeOptions(){
+
+
+try{
+
+
+const flower =
+document.getElementById("flower");
+
+
+const color =
+document.getElementById("color");
+
+
+const wrapper =
+document.getElementById("wrapper");
+
+
+const addon =
+document.getElementById("addon");
+
+
+
+if(flower){
+
+
+flower.innerHTML="";
+
+
+const snap =
+await getDocs(
+collection(db,"customFlowers")
+);
+
+
+
+snap.forEach(item=>{
+
+
+flower.innerHTML += `
+
+<option>
+
+${item.data().name}
+
+</option>
+
+`;
+
+});
+
+
+}
+
+
+
+
+if(color){
+
+
+color.innerHTML="";
+
+
+const snap =
+await getDocs(
+collection(db,"customColors")
+);
+
+
+
+snap.forEach(item=>{
+
+
+color.innerHTML += `
+
+<option>
+
+${item.data().name}
+
+</option>
+
+`;
+
+});
+
+
+}
+
+
+
+
+
+if(wrapper){
+
+
+wrapper.innerHTML="";
+
+
+const snap =
+await getDocs(
+collection(db,"customWrappers")
+);
+
+
+
+snap.forEach(item=>{
+
+
+wrapper.innerHTML += `
+
+<option>
+
+${item.data().name}
+
+</option>
+
+`;
+
+});
+
+
+}
+
+
+
+
+if(addon){
+
+
+addon.innerHTML = `
+
+<option value="">
+
+No Add-on
+
+</option>
+
+`;
+
+
+
+const snap =
+await getDocs(
+collection(db,"customAddons")
+);
+
+
+
+snap.forEach(item=>{
+
+
+addon.innerHTML += `
+
+<option>
+
+${item.data().name}
+
+</option>
+
+`;
+
+});
+
+
+}
+
+
+
+}
+
+catch(error){
+
+console.log(
+"Customize loading error:",
+error
+);
+
+
+}
+
+
+}
+
+
+
+
+loadCustomizeOptions();
+
+
+
+
+
+// ======================
+// INITIAL LOAD
+// ======================
+
+
+showCart();
+
+
+
+
+
+// ======================
+// EXPORT
+// ======================
+
+
+window.submitOrder =
+submitOrder;
+
+
 window.trackOrder =
 trackOrder;
-loadCustomizeOptions();

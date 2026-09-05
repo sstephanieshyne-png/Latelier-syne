@@ -89,7 +89,9 @@ data.facebook || "Visit our page";
 if(contact){
 
 contact.innerHTML =
-data.contact || "-";
+data.contact && data.contact.trim() !== ""
+? data.contact
+: "Contact us for inquiries";
 
 }
 

@@ -210,10 +210,9 @@ let wrapperData = JSON.parse(localStorage.getItem("wrappers")) || [];
 let addonData = JSON.parse(localStorage.getItem("addons")) || [];
 
 
-let selectedFlower = flowerData.find(item => item.name === flower);
-if(selectedFlower){
-    price += Number(selectedFlower.price);
-}
+let selectedFlower = flowerData.find(
+item => item.name === flower
+);
 
 
 let selectedWrapper = wrapperData.find(item => item.name === wrapper);

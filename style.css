@@ -2906,3 +2906,30 @@ color:#9b7187;
 font-style:italic;
 
 }
+/* Facebook contact polish */
+
+.facebook-contact{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.facebook-contact a{
+    color:#b56f91;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.facebook-contact a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:600px){
+
+    .facebook-contact{
+        font-size:18px;
+        line-height:1.5;
+    }
+
+}

@@ -1446,28 +1446,21 @@ select:focus{
 
 }
 
-
-
 /* ================================
-   FLOATING PETALS
+   SOFT CONTINUOUS FLOATING PETALS
 ================================ */
-
 
 #petals{
 
-
     position:fixed;
-
 
     inset:0;
 
-
     pointer-events:none;
 
+    overflow:hidden;
 
     z-index:999;
-
-
 
 }
 
@@ -1475,23 +1468,53 @@ select:focus{
 
 #petals span{
 
+    filter:blur(1.2px);
 
-    filter:
+    opacity:.22;
 
-    blur(.3px);
-
-
-
-    opacity:.25;
-
-
+    animation:petalFall 18s linear infinite;
 
     text-shadow:
 
-
     0 5px 15px
-    rgba(185,135,157,.3);
+    rgba(185,135,157,.25);
 
+}
+
+
+
+@keyframes petalFall{
+
+
+0%{
+
+    transform:
+    translateY(-80px)
+    rotate(0deg);
+
+    opacity:0;
+
+}
+
+
+
+15%{
+
+    opacity:.25;
+
+}
+
+
+
+100%{
+
+    transform:
+    translateY(110vh)
+    rotate(360deg);
+
+    opacity:0;
+
+}
 
 
 }

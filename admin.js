@@ -608,7 +608,8 @@ window.addFlower = async function(){
 
 const flower =
 document.getElementById("newFlower").value;
-
+const price =
+document.getElementById("flowerPrice").value;
 
 
 if(!flower){
@@ -630,7 +631,7 @@ collection(db,"customFlowers"),
 {
 
 name:flower
-
+price: Number(price)
 }
 
 );
@@ -662,7 +663,8 @@ window.addWrapper = async function(){
 
 const wrapper =
 document.getElementById("newWrapper").value;
-
+const price =
+document.getElementById("wrapperPrice").value;
 
 
 if(!wrapper){
@@ -684,7 +686,7 @@ collection(db,"customWrappers"),
 {
 
 name:wrapper
-
+price: Number(price)
 }
 
 );
@@ -706,17 +708,14 @@ showCustomizeOptions();
 };
 
 
-
-
-
-
 window.addAddon = async function(){
 
 
 
 const addon =
 document.getElementById("newAddon").value;
-
+const price =
+document.getElementById("addonPrice").value;
 
 
 if(!addon){
@@ -738,7 +737,7 @@ collection(db,"customAddons"),
 {
 
 name:addon
-
+price: Number(price)
 }
 
 );

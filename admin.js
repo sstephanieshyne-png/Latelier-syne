@@ -250,7 +250,7 @@ const snapshot =
 await getDocs(
 collection(db,"products")
 );
-
+console.log("PRODUCT COUNT:", snapshot.size);
 
 
 snapshot.forEach((item)=>{
@@ -359,7 +359,7 @@ const snapshot =
 await getDocs(
 collection(db,"orders")
 );
-
+console.log("ORDER COUNT:", snapshot.size);
 
 
 snapshot.forEach((item)=>{

@@ -229,16 +229,17 @@ if(selectedAddon){
 
 
 // quantity dagdag
-let quantityData = {
-    "3 pcs":100,
-    "5 pcs":200,
-    "7 pcs":300,
-    "12 pcs":500,
-    "24 pcs":900
-};
 
-price += quantityData[quantity] || 0;
+let quantityNumber = Number(
+quantity.replace(" pcs","")
+);
 
+
+if(selectedFlower){
+
+price += Number(selectedFlower.price) * quantityNumber;
+
+}
 
 
 document.getElementById("customPreview").innerHTML = `

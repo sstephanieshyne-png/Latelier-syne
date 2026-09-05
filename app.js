@@ -188,8 +188,7 @@ loadProducts();
 // ======================
 // CUSTOM BOUQUET PREVIEW
 // ======================
-
-function preview(){
+async function preview(){
 
 const flower = document.getElementById("flower").value;
 const color = document.getElementById("color").value;
@@ -202,46 +201,73 @@ const occasion = document.getElementById("occasion").value;
 const message = document.getElementById("message").value;
 
 
-// kukunin ang presyo mula sa saved settings
 let price = 0;
 
-let flowerData = JSON.parse(localStorage.getItem("flowers")) || [];
-let wrapperData = JSON.parse(localStorage.getItem("wrappers")) || [];
-let addonData = JSON.parse(localStorage.getItem("addons")) || [];
 
-
-let selectedFlower = flowerData.find(
-item => flower.toLowerCase().includes(item.name.toLowerCase())
+// GET FLOWER PRICE FROM FIREBASE
+const flowerSnap = await getDocs(
+    collection(db,"customFlowers")
 );
 
 
-let selectedWrapper = wrapperData.find(item => item.name === wrapper);
-if(selectedWrapper){
-    price += Number(selectedWrapper.price);
-}
+flowerSnap.forEach((doc)=>{
+
+    const data = doc.data();
+
+    if(data.name === flower){
+
+        price += Number(data.price) * Number(quantity.replace(" pcs",""));
+
+    }
+
+});
 
 
-let selectedAddon = addonData.find(item => item.name === addon);
-if(selectedAddon){
-    price += Number(selectedAddon.price);
-}
+// GET WRAPPER PRICE
 
-
-// quantity dagdag
-
-let quantityNumber = Number(
-quantity.replace(" pcs","")
+const wrapperSnap = await getDocs(
+    collection(db,"customWrappers")
 );
 
 
-if(selectedFlower){
-console.log("FLOWER FOUND:", selectedFlower);
-price += Number(selectedFlower.price) * quantityNumber;
+wrapperSnap.forEach((doc)=>{
 
-}
+    const data = doc.data();
 
+    if(data.name === wrapper){
+
+        price += Number(data.price);
+
+    }
+
+});
+
+
+// GET ADDON PRICE
+
+const addonSnap = await getDocs(
+    collection(db,"customAddons")
+);
+
+
+addonSnap.forEach((doc)=>{
+
+    const data = doc.data();
+
+    if(data.name === addon){
+
+        price += Number(data.price);
+
+    }
+
+});
+
+
+
+// SHOW PREVIEW
 
 document.getElementById("customPreview").innerHTML = `
+
 
 🌸 Flower: ${flower}<br>
 
@@ -259,13 +285,47 @@ document.getElementById("customPreview").innerHTML = `
 
 💌 Message: ${message}<br>
 
+
 <br>
+
 
 <b>Estimated Price: ₱${price}</b>
 
+
 `;
 
+
+
+// SAVE FOR CART
+
+window.customBouquet = {
+
+name:"Custom Bouquet",
+
+flower:flower,
+
+color:color,
+
+wrapper:wrapper,
+
+quantity:quantity,
+
+style:style,
+
+occasion:occasion,
+
+addon:addon,
+
+message:message,
+
+price:price
+
+};
+
+
 }
+
+
 // ======================
 // SUBMIT ORDER
 // ======================

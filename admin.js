@@ -1,39 +1,41 @@
+// ======================
+// FIREBASE SETUP
+// ======================
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-  setDoc,
-  getDoc
+getFirestore,
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+doc,
+updateDoc,
+setDoc,
+getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// ======================
-// FIREBASE CONFIG
-// ======================
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
+apiKey:"AIzaSyDvtUJOmtU9zP76h_GEBiNRjstRQ3IEpaA",
 
-authDomain: "latelier-syne.firebaseapp.com",
+authDomain:"latelier-syne.firebaseapp.com",
 
-projectId: "latelier-syne",
+projectId:"latelier-syne",
 
-storageBucket: "latelier-syne.firebasestorage.app",
+storageBucket:"latelier-syne.firebasestorage.app",
 
-messagingSenderId: "785009872575",
+messagingSenderId:"785009872575",
 
-appId: "1:785009872575:web:cb2b2ac9dd51fe823b800a",
+appId:"1:785009872575:web:cb2b2ac9dd51fe823b800a",
 
-measurementId: "G-PVBCNJTSTW"
+measurementId:"G-PVBCNJTSTW"
 
 };
+
 
 
 const app = initializeApp(firebaseConfig);
@@ -43,41 +45,41 @@ const db = getFirestore(app);
 
 
 // ======================
-// PREMIUM TOAST
+// TOAST
 // ======================
+
 
 function showToast(message){
 
-    const toast =
-    document.getElementById("toast");
+const toast =
+document.getElementById("toast");
 
 
-    if(!toast) return;
+if(!toast) return;
 
 
-    toast.innerHTML = message;
+toast.innerHTML = message;
+
+toast.classList.add("show");
 
 
-    toast.classList.add("show");
+setTimeout(()=>{
 
+toast.classList.remove("show");
 
-    setTimeout(()=>{
-
-        toast.classList.remove("show");
-
-    },2500);
+},2500);
 
 }
 
 
 
 // ======================
-// IMGBB SETTINGS
+// IMAGE UPLOAD
 // ======================
+
 
 const IMGBB_API_KEY =
 "78157b4e1e63790ce09bee450d5acd5c";
-
 
 
 
@@ -108,9 +110,7 @@ document.getElementById("photo").files[0];
 
 if(!name || !price){
 
-showToast(
-"🌸 Please complete product details"
-);
+showToast("🌸 Please complete product details");
 
 return;
 
@@ -118,7 +118,7 @@ return;
 
 
 
-let imageURL = "";
+let imageURL="";
 
 
 
@@ -128,9 +128,7 @@ if(photo){
 try{
 
 
-let formData =
-new FormData();
-
+let formData = new FormData();
 
 formData.append(
 "image",
@@ -172,25 +170,19 @@ data.data.url;
 
 }catch(error){
 
-
 console.log(error);
 
-
-showToast(
-"🌸 Image upload failed"
-);
-
+}
 
 }
 
-
-
-}
 
 
 
 await addDoc(
+
 collection(db,"products"),
+
 {
 
 name:name,
@@ -222,12 +214,10 @@ document.getElementById("desc").value="";
 document.getElementById("photo").value="";
 
 
-
 showProducts();
 
 
 };
-
 
 
 
@@ -241,16 +231,23 @@ async function showProducts(){
 
 const productList =
 document.getElementById("productList");
+
+
 if(!productList) return;
+
+
 productList.innerHTML="";
 
+
+
+try{
 
 
 const snapshot =
 await getDocs(
 collection(db,"products")
 );
-console.log("PRODUCT COUNT:", snapshot.size);
+
 
 
 snapshot.forEach((item)=>{
@@ -281,6 +278,7 @@ style="width:200px;border-radius:20px;">
 ""
 
 }
+
 
 
 <h3>
@@ -317,8 +315,24 @@ Delete
 
 }
 
+catch(error){
+
+console.log(
+"Product Error:",
+error
+);
+
+}
 
 
+}
+
+
+
+
+// ======================
+// DELETE PRODUCT
+// ======================
 
 
 window.deleteProduct =
@@ -345,21 +359,29 @@ showProducts();
 // SHOW ORDERS
 // ======================
 
+
 async function showOrders(){
 
 
 const orderList =
 document.getElementById("orderList");
-if(!orderList) return;
-orderList.innerHTML = "";
 
+
+if(!orderList) return;
+
+
+orderList.innerHTML="";
+
+
+
+try{
 
 
 const snapshot =
 await getDocs(
 collection(db,"orders")
 );
-console.log("ORDER COUNT:", snapshot.size);
+
 
 
 snapshot.forEach((item)=>{
@@ -374,11 +396,11 @@ item.id;
 
 
 
-let orderedItems = "";
+let orderedItems="";
 
 
 
-if(order.items){
+if(order.items && Array.isArray(order.items)){
 
 
 order.items.forEach(product=>{
@@ -389,7 +411,6 @@ orderedItems += `
 🌸 ${product.name} - ₱${product.price}<br>
 
 `;
-
 
 
 });
@@ -405,6 +426,7 @@ order.status || "Pending";
 
 
 
+
 orderList.innerHTML += `
 
 
@@ -412,18 +434,18 @@ orderList.innerHTML += `
 
 
 <h3>
-🌸 ${order.customer || ""}
+🌸 ${order.customer || "Customer"}
 </h3>
 
 
 
 <p>
-📞 ${order.phone || ""}
+📞 ${order.phone || "No contact"}
 </p>
 
 
 <p>
-📍 ${order.address || ""}
+📍 ${order.address || "No address"}
 </p>
 
 
@@ -435,7 +457,7 @@ orderList.innerHTML += `
 
 <p>
 
-${orderedItems}
+${orderedItems || "No items"}
 
 </p>
 
@@ -451,11 +473,17 @@ ${orderedItems}
 
 
 <p>
+
 Status:
+
 <span class="status-badge">
+
 ${currentStatus}
+
 </span>
+
 </p>
+
 
 
 
@@ -465,29 +493,37 @@ onchange="updateStatus('${orderId}', this.value)"
 
 
 <option value="Pending"
-${currentStatus === "Pending" ? "selected" : ""}>
+${currentStatus==="Pending" ? "selected":""}>
+
 Pending
+
 </option>
 
 
 
 <option value="Preparing"
-${currentStatus === "Preparing" ? "selected" : ""}>
+${currentStatus==="Preparing" ? "selected":""}>
+
 Preparing
+
 </option>
 
 
 
 <option value="Ready for Delivery"
-${currentStatus === "Ready for Delivery" ? "selected" : ""}>
+${currentStatus==="Ready for Delivery" ? "selected":""}>
+
 Ready for Delivery
+
 </option>
 
 
 
 <option value="Completed"
-${currentStatus === "Completed" ? "selected" : ""}>
+${currentStatus==="Completed" ? "selected":""}>
+
 Completed
+
 </option>
 
 
@@ -501,8 +537,22 @@ Completed
 `;
 
 
-
 });
+
+
+}
+
+
+catch(error){
+
+console.log(
+"Order Error:",
+error
+);
+
+
+}
+
 
 
 }
@@ -510,9 +560,8 @@ Completed
 
 
 
-
 // ======================
-// UPDATE STATUS
+// UPDATE ORDER STATUS
 // ======================
 
 
@@ -520,9 +569,13 @@ window.updateStatus =
 async function(id,status){
 
 
+try{
+
 
 await updateDoc(
+
 doc(db,"orders",id),
+
 {
 
 status:status
@@ -543,11 +596,22 @@ showOrders();
 
 
 
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+
 };
 // ======================
-// CUSTOMIZE OPTIONS
+// CUSTOMIZATION OPTIONS
 // ======================
 
+
+// ADD COLOR
 
 window.addColor = async function(){
 
@@ -559,9 +623,7 @@ document.getElementById("newColor").value;
 
 if(!color){
 
-showToast(
-"🌸 Enter color first"
-);
+showToast("🌸 Enter color first");
 
 return;
 
@@ -570,7 +632,9 @@ return;
 
 
 await addDoc(
+
 collection(db,"customColors"),
+
 {
 
 name:color
@@ -581,13 +645,10 @@ name:color
 
 
 
-showToast(
-"🌸 Color Added!"
-);
-
-
-
 document.getElementById("newColor").value="";
+
+
+showToast("🎨 Color Added!");
 
 
 showCustomizeOptions();
@@ -598,25 +659,26 @@ showCustomizeOptions();
 
 
 
+// ======================
+// ADD FLOWER WITH PRICE
+// ======================
 
 
 window.addFlower = async function(){
 
 
-
 const flower =
 document.getElementById("newFlower").value;
+
+
 const price =
 document.getElementById("flowerPrice").value;
 
 
+
 if(!flower){
 
-
-showToast(
-"🌸 Enter flower first"
-);
-
+showToast("🌸 Enter flower first");
 
 return;
 
@@ -625,25 +687,28 @@ return;
 
 
 await addDoc(
+
 collection(db,"customFlowers"),
+
 {
 
-name:flower
-price: Number(price)
+name:flower,
+
+price:Number(price) || 0
+
 }
 
-);
-
-
-
-showToast(
-"🌸 Flower Added!"
 );
 
 
 
 document.getElementById("newFlower").value="";
 
+document.getElementById("flowerPrice").value="";
+
+
+showToast("🌸 Flower Added!");
+
 
 showCustomizeOptions();
 
@@ -654,24 +719,26 @@ showCustomizeOptions();
 
 
 
+// ======================
+// ADD WRAPPER WITH PRICE
+// ======================
+
 
 window.addWrapper = async function(){
 
 
-
 const wrapper =
 document.getElementById("newWrapper").value;
+
+
 const price =
 document.getElementById("wrapperPrice").value;
 
 
+
 if(!wrapper){
 
-
-showToast(
-"🌸 Enter wrapper first"
-);
-
+showToast("🎀 Enter wrapper first");
 
 return;
 
@@ -680,25 +747,28 @@ return;
 
 
 await addDoc(
+
 collection(db,"customWrappers"),
+
 {
 
-name:wrapper
-price: Number(price)
+name:wrapper,
+
+price:Number(price) || 0
+
 }
 
-);
-
-
-
-showToast(
-"🌸 Wrapper Added!"
 );
 
 
 
 document.getElementById("newWrapper").value="";
 
+document.getElementById("wrapperPrice").value="";
+
+
+showToast("🎀 Wrapper Added!");
+
 
 showCustomizeOptions();
 
@@ -706,23 +776,29 @@ showCustomizeOptions();
 };
 
 
-window.addAddon = async function(){
 
+
+
+// ======================
+// ADD ADDON WITH PRICE
+// ======================
+
+
+window.addAddon = async function(){
 
 
 const addon =
 document.getElementById("newAddon").value;
+
+
 const price =
 document.getElementById("addonPrice").value;
 
 
+
 if(!addon){
 
-
-showToast(
-"🌸 Enter add-on first"
-);
-
+showToast("🍫 Enter add-on first");
 
 return;
 
@@ -731,24 +807,27 @@ return;
 
 
 await addDoc(
+
 collection(db,"customAddons"),
+
 {
 
-name:addon
-price: Number(price)
+name:addon,
+
+price:Number(price) || 0
+
 }
 
 );
 
 
 
-showToast(
-"🌸 Add-on Added!"
-);
-
-
-
 document.getElementById("newAddon").value="";
+
+document.getElementById("addonPrice").value="";
+
+
+showToast("🍫 Add-on Added!");
 
 
 showCustomizeOptions();
@@ -786,6 +865,11 @@ document.getElementById("addons");
 
 
 
+if(!flowers || !colors || !wrappers || !addons)
+return;
+
+
+
 flowers.innerHTML="";
 
 colors.innerHTML="";
@@ -799,6 +883,7 @@ addons.innerHTML="";
 
 // FLOWERS
 
+
 const flowerSnap =
 await getDocs(
 collection(db,"customFlowers")
@@ -809,12 +894,18 @@ collection(db,"customFlowers")
 flowerSnap.forEach((item)=>{
 
 
-flowers.innerHTML += `
+const data =
+item.data();
 
+
+
+flowers.innerHTML += `
 
 <p>
 
-🌸 ${item.data().name}
+🌸 ${data.name}
+
+ ₱${data.price || 0}
 
 
 <button onclick="deleteFlower('${item.id}')">
@@ -823,11 +914,10 @@ Delete
 
 </button>
 
-
 </p>
 
-
 `;
+
 
 
 });
@@ -837,6 +927,7 @@ Delete
 
 
 // COLORS
+
 
 const colorSnap =
 await getDocs(
@@ -850,7 +941,6 @@ colorSnap.forEach((item)=>{
 
 colors.innerHTML += `
 
-
 <p>
 
 🎨 ${item.data().name}
@@ -862,11 +952,10 @@ Delete
 
 </button>
 
-
 </p>
 
-
 `;
+
 
 
 });
@@ -878,6 +967,7 @@ Delete
 
 // WRAPPERS
 
+
 const wrapperSnap =
 await getDocs(
 collection(db,"customWrappers")
@@ -888,12 +978,18 @@ collection(db,"customWrappers")
 wrapperSnap.forEach((item)=>{
 
 
-wrappers.innerHTML += `
+const data =
+item.data();
 
+
+
+wrappers.innerHTML += `
 
 <p>
 
-🎀 ${item.data().name}
+🎀 ${data.name}
+
+ ₱${data.price || 0}
 
 
 <button onclick="deleteWrapper('${item.id}')">
@@ -904,7 +1000,6 @@ Delete
 
 
 </p>
-
 
 `;
 
@@ -920,6 +1015,7 @@ Delete
 
 // ADDONS
 
+
 const addonSnap =
 await getDocs(
 collection(db,"customAddons")
@@ -930,12 +1026,18 @@ collection(db,"customAddons")
 addonSnap.forEach((item)=>{
 
 
-addons.innerHTML += `
+const data =
+item.data();
 
+
+
+addons.innerHTML += `
 
 <p>
 
-🍫 ${item.data().name}
+🍫 ${data.name}
+
+ ₱${data.price || 0}
 
 
 <button onclick="deleteAddon('${item.id}')">
@@ -947,7 +1049,6 @@ Delete
 
 </p>
 
-
 `;
 
 
@@ -957,17 +1058,12 @@ Delete
 
 
 }
-
-
-
-
-
-
-
 // ======================
 // DELETE CUSTOM OPTIONS
 // ======================
 
+
+// DELETE FLOWER
 
 window.deleteFlower =
 async function(id){
@@ -979,10 +1075,7 @@ doc(db,"customFlowers",id)
 
 
 
-showToast(
-"🌸 Flower Deleted"
-);
-
+showToast("🌸 Flower Deleted");
 
 
 showCustomizeOptions();
@@ -993,6 +1086,7 @@ showCustomizeOptions();
 
 
 
+// DELETE COLOR
 
 window.deleteColor =
 async function(id){
@@ -1004,10 +1098,7 @@ doc(db,"customColors",id)
 
 
 
-showToast(
-"🎨 Color Deleted"
-);
-
+showToast("🎨 Color Deleted");
 
 
 showCustomizeOptions();
@@ -1018,7 +1109,7 @@ showCustomizeOptions();
 
 
 
-
+// DELETE WRAPPER
 
 window.deleteWrapper =
 async function(id){
@@ -1030,10 +1121,7 @@ doc(db,"customWrappers",id)
 
 
 
-showToast(
-"🎀 Wrapper Deleted"
-);
-
+showToast("🎀 Wrapper Deleted");
 
 
 showCustomizeOptions();
@@ -1044,7 +1132,7 @@ showCustomizeOptions();
 
 
 
-
+// DELETE ADDON
 
 window.deleteAddon =
 async function(id){
@@ -1056,10 +1144,7 @@ doc(db,"customAddons",id)
 
 
 
-showToast(
-"🍫 Add-on Deleted"
-);
-
+showToast("🍫 Add-on Deleted");
 
 
 showCustomizeOptions();
@@ -1071,46 +1156,50 @@ showCustomizeOptions();
 
 
 
-
-// ======================
-// LOAD DATA
-// ======================
-
-
-showProducts();
-
-showOrders();
-
-showCustomizeOptions();
-console.log("ADMIN JS LOADED");
 // ======================
 // SHOP SETTINGS
 // ======================
 
-window.saveSettings = async function(){
+
+window.saveSettings =
+async function(){
+
 
 const shop =
 document.getElementById("shop").value;
 
+
 const tag =
 document.getElementById("tag").value;
 
+
 const fb =
 document.getElementById("fb").value;
+
 
 const contact =
 document.getElementById("contact").value;
 
 
+
 await setDoc(
+
 doc(db,"settings","shopInfo"),
+
 {
+
 shop,
+
 tag,
+
 facebook:fb,
+
 contact
+
 }
+
 );
+
 
 
 showToast(
@@ -1120,50 +1209,124 @@ showToast(
 
 };
 
-// ======================
-// LOAD SHOP SETTINGS
-// ======================
+
+
+
 
 async function loadSettings(){
 
 
-const snapshot =
-await getDocs(
-collection(db,"settings")
+try{
+
+
+const snap =
+await getDoc(
+doc(db,"settings","shopInfo")
 );
 
 
-snapshot.forEach((item)=>{
+
+if(snap.exists()){
 
 
-const data=item.data();
+const data =
+snap.data();
 
 
+
+if(document.getElementById("shop"))
 
 document.getElementById("shop").value =
 data.shop || "";
 
 
 
+if(document.getElementById("tag"))
+
 document.getElementById("tag").value =
 data.tag || "";
 
 
+
+if(document.getElementById("fb"))
 
 document.getElementById("fb").value =
 data.facebook || "";
 
 
 
+if(document.getElementById("contact"))
+
 document.getElementById("contact").value =
 data.contact || "";
 
 
-});
+
+}
+
+
+}
+
+catch(error){
+
+console.log(
+"Settings Error:",
+error
+);
+
+}
 
 
 }
 
 
 
-loadSettings();
+
+
+// ======================
+// FINAL LOAD
+// ======================
+
+
+async function loadAdmin(){
+
+
+try{
+
+
+await showProducts();
+
+
+await showOrders();
+
+
+await showCustomizeOptions();
+
+
+await loadSettings();
+
+
+
+console.log(
+"ADMIN JS LOADED"
+);
+
+
+
+}
+
+catch(error){
+
+console.log(
+"ADMIN ERROR:",
+error
+);
+
+}
+
+
+}
+
+
+
+loadAdmin();

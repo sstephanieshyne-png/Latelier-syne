@@ -191,39 +191,79 @@ loadProducts();
 
 function preview(){
 
-    const customData = {
+const flower = document.getElementById("flower").value;
+const color = document.getElementById("color").value;
+const wrapper = document.getElementById("wrapper").value;
+const addon = document.getElementById("addon").value;
 
-        name:"Custom Bouquet",
-
-        flower:flower.value,
-
-        color:color.value,
-
-        wrapper:wrapper.value,
-
-        message:message.value,
-
-        price:0
-
-    };
+const quantity = document.getElementById("quantity").value;
+const style = document.getElementById("style").value;
+const occasion = document.getElementById("occasion").value;
+const message = document.getElementById("message").value;
 
 
-    window.customBouquet = customData;
+// kukunin ang presyo mula sa saved settings
+let price = 0;
+
+let flowerData = JSON.parse(localStorage.getItem("flowers")) || [];
+let wrapperData = JSON.parse(localStorage.getItem("wrappers")) || [];
+let addonData = JSON.parse(localStorage.getItem("addons")) || [];
 
 
-    document.getElementById('customPreview').innerHTML =
+let selectedFlower = flowerData.find(item => item.name === flower);
+if(selectedFlower){
+    price += Number(selectedFlower.price);
+}
 
-    `
 
-    🌸 ${customData.flower}<br>
+let selectedWrapper = wrapperData.find(item => item.name === wrapper);
+if(selectedWrapper){
+    price += Number(selectedWrapper.price);
+}
 
-    🎨 ${customData.color}<br>
 
-    🎀 ${customData.wrapper}<br>
+let selectedAddon = addonData.find(item => item.name === addon);
+if(selectedAddon){
+    price += Number(selectedAddon.price);
+}
 
-    💌 ${customData.message}
 
-    `;
+// quantity dagdag
+let quantityData = {
+    "3 pcs":100,
+    "5 pcs":200,
+    "7 pcs":300,
+    "12 pcs":500,
+    "24 pcs":900
+};
+
+price += quantityData[quantity] || 0;
+
+
+
+document.getElementById("customPreview").innerHTML = `
+
+🌸 Flower: ${flower}<br>
+
+🎨 Color: ${color}<br>
+
+🎀 Wrapper: ${wrapper}<br>
+
+🌷 Quantity: ${quantity}<br>
+
+✨ Style: ${style}<br>
+
+💐 Occasion: ${occasion}<br>
+
+🍫 Add-on: ${addon}<br>
+
+💌 Message: ${message}<br>
+
+<br>
+
+<b>Estimated Price: ₱${price}</b>
+
+`;
 
 }
 // ======================

@@ -606,10 +606,8 @@ result.innerHTML =
 }
 
 
-
-
 // ======================
-// FLOATING PETALS
+// CONTINUOUS FLOATING PETALS
 // ======================
 
 const petals =
@@ -619,20 +617,14 @@ document.getElementById("petals");
 if(petals){
 
 
-const flowers =
-[
+const flowers = [
 "🌸",
 "🌷",
-"🌺",
-"🌼"
+"🌺"
 ];
 
 
-
-for(let i=0;i<10;i++){
-
-
-setTimeout(()=>{
+function createPetal(){
 
 
 const flower =
@@ -655,16 +647,16 @@ Math.random()*100+"vw";
 
 
 flower.style.fontSize =
-(18 + Math.random()*12)+"px";
+(16 + Math.random()*10)+"px";
 
 
-flower.style.opacity="0.75";
-
-flower.style.zIndex="9999";
+flower.style.opacity="0.25";
 
 
-flower.style.transition =
-"transform 7s linear, opacity 7s";
+flower.style.zIndex="999";
+
+
+flower.style.filter="blur(1px)";
 
 
 
@@ -672,15 +664,37 @@ petals.appendChild(flower);
 
 
 
-setTimeout(()=>{
-
-flower.style.transform =
-`translateY(110vh) rotate(360deg)`;
-
-flower.style.opacity="0";
+const duration =
+12000 + Math.random()*8000;
 
 
-},100);
+
+flower.animate(
+
+[
+{
+transform:"translateY(-50px) rotate(0deg)",
+opacity:0
+},
+
+{
+opacity:.25
+},
+
+{
+transform:
+`translateY(110vh) rotate(360deg)`,
+opacity:0
+}
+
+],
+
+{
+duration:duration,
+easing:"linear"
+}
+
+);
 
 
 
@@ -688,17 +702,25 @@ setTimeout(()=>{
 
 flower.remove();
 
-},7500);
+},duration);
 
-
-
-},Math.random()*3000);
 
 
 }
 
-}
 
+
+// create one every few seconds
+
+setInterval(()=>{
+
+createPetal();
+
+},2500);
+
+
+
+}
 
 
 // =============================

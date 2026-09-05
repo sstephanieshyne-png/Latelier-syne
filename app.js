@@ -1026,3 +1026,4 @@ removeCart;
 
 window.trackOrder =
 trackOrder;
+loadCustomizeOptions();

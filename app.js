@@ -195,7 +195,8 @@ const color = document.getElementById("color").value;
 const wrapper = document.getElementById("wrapper").value;
 const addon = document.getElementById("addon").value;
 
-const quantity = document.getElementById("quantity").value;
+const quantity = document.getElementById("quantity").value
+) || 1;
 const style = document.getElementById("style").value;
 const occasion = document.getElementById("occasion").value;
 const message = document.getElementById("message").value;
@@ -216,7 +217,7 @@ flowerSnap.forEach((doc)=>{
 
     if(data.name === flower){
 
-        price += Number(data.price) * Number(quantity.replace(" pcs",""));
+        price += Number(data.price)* quantity;
 
     }
 

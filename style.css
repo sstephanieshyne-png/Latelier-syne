@@ -2813,3 +2813,33 @@ font-style:italic;
 .facebook-item a{
     white-space:nowrap;
 }
+
+.order-tabs{
+
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-bottom:25px;
+
+}
+
+
+.order-tabs button{
+
+padding:12px 22px;
+border-radius:25px;
+
+background:#f3c7d8;
+
+color:#604957;
+
+}
+
+
+.order-tabs button:hover{
+
+background:#d89bb4;
+
+color:white;
+
+}

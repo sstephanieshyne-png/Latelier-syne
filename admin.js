@@ -548,6 +548,8 @@ window.filterOrders = function(status){
 currentFilter = status;
 updateOrderCounts();
 displayOrders();
+};
+
 function updateOrderCounts(){
 
 document.getElementById("countAll").innerHTML =

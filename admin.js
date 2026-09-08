@@ -501,10 +501,16 @@ Total: ₱${total}
 </p>
 
 
-<p>
-Status:
-<b>${order.status || "Pending"}</b>
-</p>
+<div class="status-badge 
+${
+(order.status || "Pending")
+.toLowerCase()
+.replaceAll(" ","-")
+}">
+
+${order.status || "Pending"}
+
+</div>
 
 
 <select onchange="updateStatus('${order.id}', this.value)">

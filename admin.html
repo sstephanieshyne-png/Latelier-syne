@@ -56,7 +56,11 @@ Add Flower
 
 <h2>Orders</h2>
 
-
+<input 
+id="orderSearch"
+placeholder="🔍 Search customer name or phone..."
+oninput="searchOrders(this.value)"
+>
 <div class="order-tabs">
 
 <button onclick="filterOrders('All')">

@@ -984,3 +984,85 @@ submitOrder;
 
 window.trackOrder =
 trackOrder;
+// ======================
+// SUBMIT ORDER
+// ======================
+
+async function submitOrder(){
+
+  const customer =
+  document.getElementById("customer").value;
+
+  const phone =
+  document.getElementById("phone").value;
+
+  const address =
+  document.getElementById("address").value;
+
+  const paymentMethod =
+  document.getElementById("paymentMethod").value;
+
+  const notes =
+  document.getElementById("notes").value;
+
+
+  if(!customer || !phone || !address){
+
+    showToast("🌸 Please complete your details");
+    return;
+
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(db,"orders"),
+      {
+
+        customer,
+        phone,
+        address,
+        paymentMethod,
+        notes,
+
+        items: cart,
+
+        status:"Pending",
+
+        date:new Date()
+
+      }
+    );
+
+
+    showToast("🌸 Order Submitted Successfully!");
+
+
+    cart = [];
+
+    localStorage.removeItem("cart");
+
+    showCart();
+
+
+    document.getElementById("customer").value="";
+    document.getElementById("phone").value="";
+    document.getElementById("address").value="";
+    document.getElementById("notes").value="";
+
+
+  }
+
+  catch(error){
+
+    console.log("Submit Order Error:",error);
+
+    showToast("❌ Failed to submit order");
+
+  }
+
+}
+
+
+window.submitOrder = submitOrder;

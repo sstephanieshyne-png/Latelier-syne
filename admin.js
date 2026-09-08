@@ -550,7 +550,111 @@ Completed
 
 }
 window.filterOrders = function(status){
+window.searchOrders = function(keyword){
 
+keyword = keyword.toLowerCase();
+
+
+let orderList =
+document.getElementById("orderList");
+
+
+let filtered =
+allOrders.filter(order =>
+
+(order.customer || "")
+.toLowerCase()
+.includes(keyword)
+
+||
+
+(order.phone || "")
+.includes(keyword)
+
+);
+
+
+orderList.innerHTML="";
+
+
+filtered.forEach(order=>{
+
+
+let orderedItems="";
+
+let total=0;
+
+
+if(order.items && Array.isArray(order.items)){
+
+
+order.items.forEach(product=>{
+
+orderedItems +=
+`
+🌸 ${product.name} - ₱${product.price}<br>
+`;
+
+total += Number(product.price || 0);
+
+});
+
+}
+
+
+
+orderList.innerHTML += `
+
+<div class="card order-card">
+
+<h3>
+🌸 ${order.customer || "Customer"}
+</h3>
+
+
+<p>
+📞 ${order.phone || ""}
+</p>
+
+
+<p>
+📍 ${order.address || ""}
+</p>
+
+
+<h4>
+🛍 Order:
+</h4>
+
+
+<p>
+${orderedItems}
+</p>
+
+
+<h3>
+Total: ₱${total}
+</h3>
+
+
+<div class="status-badge 
+${(order.status || "Pending")
+.toLowerCase()
+.replaceAll(" ","-")}">
+
+${order.status || "Pending"}
+
+</div>
+
+
+</div>
+
+`;
+
+});
+
+
+}
 currentFilter = status;
 updateOrderCounts();
 displayOrders();

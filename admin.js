@@ -358,46 +358,37 @@ showProducts();
 // ======================
 // SHOW ORDERS
 // ======================
+let allOrders = [];
+let currentFilter = "All";
 
-
-async function showOrders(){
+function displayOrders(){
 
 
 const orderList =
 document.getElementById("orderList");
 
 
-if(!orderList) return;
-
-
 orderList.innerHTML="";
 
 
-
-try{
-
-
-const snapshot =
-await getDocs(
-collection(db,"orders")
+let filteredOrders =
+currentFilter === "All"
+?
+allOrders
+:
+allOrders.filter(
+order =>
+(order.status || "Pending") === currentFilter
 );
 
 
 
-snapshot.forEach((item)=>{
-
-
-const order =
-item.data();
-
-
-const orderId =
-item.id;
-
+filteredOrders.forEach(order=>{
 
 
 let orderedItems="";
 
+let total=0;
 
 
 if(order.items && Array.isArray(order.items)){
@@ -406,24 +397,19 @@ if(order.items && Array.isArray(order.items)){
 order.items.forEach(product=>{
 
 
-orderedItems += `
-
+orderedItems +=
+`
 🌸 ${product.name} - ₱${product.price}<br>
-
 `;
+
+
+total += Number(product.price || 0);
 
 
 });
 
 
 }
-
-
-
-
-const currentStatus =
-order.status || "Pending";
-
 
 
 
@@ -438,16 +424,14 @@ orderList.innerHTML += `
 </h3>
 
 
-
 <p>
-📞 ${order.phone || "No contact"}
+📞 ${order.phone || ""}
 </p>
 
 
 <p>
-📍 ${order.address || "No address"}
+📍 ${order.address || ""}
 </p>
-
 
 
 <h4>
@@ -456,79 +440,50 @@ orderList.innerHTML += `
 
 
 <p>
-
-${orderedItems || "No items"}
-
+${orderedItems}
 </p>
 
 
+<h3>
+Total: ₱${total}
+</h3>
+
 
 <p>
-
 💌 ${order.notes || "No notes"}
-
 </p>
-
-
 
 
 <p>
-
 Status:
-
-<span class="status-badge">
-
-${currentStatus}
-
-</span>
-
+<b>${order.status || "Pending"}</b>
 </p>
 
 
+<select onchange="updateStatus('${order.id}', this.value)">
 
 
-<select
-onchange="updateStatus('${orderId}', this.value)"
->
-
-
-<option value="Pending"
-${currentStatus==="Pending" ? "selected":""}>
-
+<option ${order.status==="Pending"?"selected":""}>
 Pending
-
 </option>
 
 
-
-<option value="Preparing"
-${currentStatus==="Preparing" ? "selected":""}>
-
+<option ${order.status==="Preparing"?"selected":""}>
 Preparing
-
 </option>
 
 
-
-<option value="Ready for Delivery"
-${currentStatus==="Ready for Delivery" ? "selected":""}>
-
+<option ${order.status==="Ready for Delivery"?"selected":""}>
 Ready for Delivery
-
 </option>
 
 
-
-<option value="Completed"
-${currentStatus==="Completed" ? "selected":""}>
-
+<option ${order.status==="Completed"?"selected":""}>
 Completed
-
 </option>
 
 
 </select>
-
 
 
 </div>
@@ -541,25 +496,13 @@ Completed
 
 
 }
+window.filterOrders = function(status){
 
+currentFilter = status;
 
-catch(error){
-
-console.log(
-"Order Error:",
-error
-);
-
+displayOrders();
 
 }
-
-
-
-}
-
-
-
-
 // ======================
 // UPDATE ORDER STATUS
 // ======================

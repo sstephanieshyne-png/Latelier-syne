@@ -2989,3 +2989,135 @@ background:#c9f7d5;
 color:#247a3b;
 
 }
+/* =====================
+   HORIZONTAL ADMIN LAYOUT
+===================== */
+
+
+/* Products horizontal */
+
+#productList{
+
+display:flex;
+
+gap:20px;
+
+overflow-x:auto;
+
+padding:15px 5px;
+
+scroll-behavior:smooth;
+
+}
+
+
+#productList::-webkit-scrollbar{
+
+height:6px;
+
+}
+
+
+/* Product cards */
+
+#productList .card{
+
+min-width:260px;
+
+flex:0 0 auto;
+
+border-radius:25px;
+
+padding:18px;
+
+background:white;
+
+}
+
+
+/* Product image */
+
+#productList img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+border-radius:20px;
+
+}
+
+
+
+
+
+/* Customize horizontal lists */
+
+
+#flowers,
+#colors,
+#wrappers,
+#addons{
+
+display:flex;
+
+gap:15px;
+
+overflow-x:auto;
+
+padding:10px 0;
+
+}
+
+
+
+#flowers::-webkit-scrollbar,
+#colors::-webkit-scrollbar,
+#wrappers::-webkit-scrollbar,
+#addons::-webkit-scrollbar{
+
+height:5px;
+
+}
+
+
+
+
+/* Customize cards */
+
+
+#flowers p,
+#colors p,
+#wrappers p,
+#addons p{
+
+min-width:180px;
+
+background:white;
+
+padding:18px;
+
+border-radius:20px;
+
+margin:0;
+
+box-shadow:0 5px 15px rgba(0,0,0,.05);
+
+}
+
+
+
+
+/* Cleaner sections */
+
+.panel{
+
+border-radius:30px;
+
+padding:25px;
+
+margin-bottom:25px;
+
+}

@@ -550,6 +550,16 @@ Completed
 
 }
 window.filterOrders = function(status){
+
+currentFilter = status;
+
+updateOrderCounts();
+
+displayOrders();
+
+};
+
+
 window.searchOrders = function(keyword){
 
 keyword = keyword.toLowerCase();

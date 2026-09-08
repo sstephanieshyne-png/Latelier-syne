@@ -917,10 +917,17 @@ item.data();
 
 flowers.innerHTML += `
 
-<p>
-🌸 ${data.name} ₱${data.price}
+<div class="custom-card">
 
+<p>
+🌸 ${data.name} ₱${data.price || 0}
 </p>
+
+<button onclick="deleteCustomize('customFlowers','${item.id}')">
+Delete
+</button>
+
+</div>
 
 `;
 
@@ -943,9 +950,17 @@ colorSnap.forEach(item=>{
 
 colors.innerHTML += `
 
+<div class="custom-card">
+
 <p>
 🎨 ${item.data().name}
 </p>
+
+<button onclick="deleteCustomize('customColors','${item.id}')">
+Delete
+</button>
+
+</div>
 
 `;
 
@@ -973,9 +988,17 @@ item.data();
 
 wrappers.innerHTML += `
 
+<div class="custom-card">
+
 <p>
-🎀 ${data.name} ₱${data.price}
+🎀 ${data.name} ₱${data.price || 0}
 </p>
+
+<button onclick="deleteCustomize('customWrappers','${item.id}')">
+Delete
+</button>
+
+</div>
 
 `;
 
@@ -1003,9 +1026,17 @@ item.data();
 
 addons.innerHTML += `
 
+<div class="custom-card">
+
 <p>
-🍫 ${data.name} ₱${data.price}
+🍫 ${data.name} ₱${data.price || 0}
 </p>
+
+<button onclick="deleteCustomize('customAddons','${item.id}')">
+Delete
+</button>
+
+</div>
 
 `;
 
@@ -1153,3 +1184,14 @@ console.log("ADMIN READY");
 
 
 loadAdmin();
+window.deleteCustomize = async function(collectionName,id){
+
+await deleteDoc(
+doc(db,collectionName,id)
+);
+
+alert("Deleted");
+
+showCustomizeOptions();
+
+};

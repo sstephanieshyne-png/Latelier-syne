@@ -555,11 +555,55 @@ displayOrders();
 
 window.searchOrders = function(keyword){
 
+keyword = keyword.toLowerCase();
 
-}
-currentFilter = status;
-updateOrderCounts();
-displayOrders();
+
+let filtered =
+allOrders.filter(order =>
+
+(order.customer || "")
+.toLowerCase()
+.includes(keyword)
+
+||
+
+(order.phone || "")
+.includes(keyword)
+
+);
+
+
+const orderList =
+document.getElementById("orderList");
+
+
+orderList.innerHTML="";
+
+
+filtered.forEach(order=>{
+
+orderList.innerHTML += `
+
+<div class="card order-card">
+
+<h3>
+🌸 ${order.customer || "Customer"}
+</h3>
+
+<p>
+📞 ${order.phone || ""}
+</p>
+
+<p>
+📍 ${order.address || ""}
+</p>
+
+</div>
+
+`;
+
+});
+
 };
 
 function updateOrderCounts(){

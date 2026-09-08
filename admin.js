@@ -361,6 +361,53 @@ showProducts();
 let allOrders = [];
 let currentFilter = "All";
 
+async function showOrders(){
+
+const orderList =
+document.getElementById("orderList");
+
+if(!orderList) return;
+
+
+try{
+
+const snapshot =
+await getDocs(
+collection(db,"orders")
+);
+
+
+allOrders = [];
+
+
+snapshot.forEach((item)=>{
+
+allOrders.push({
+
+id:item.id,
+
+...item.data()
+
+});
+
+});
+
+
+displayOrders();
+
+
+}
+
+catch(error){
+
+console.log(
+"Order Error:",
+error
+);
+
+}
+
+}
 function displayOrders(){
 
 

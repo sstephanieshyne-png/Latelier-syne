@@ -3000,39 +3000,50 @@ color:#247a3b;
 
 display:flex;
 
+flex-direction:row;
+
 gap:20px;
 
 overflow-x:auto;
 
+width:100%;
+
 padding:15px 5px;
 
-scroll-behavior:smooth;
-
 }
 
 
-#productList::-webkit-scrollbar{
 
-height:6px;
+#productList > div{
 
-}
+min-width:280px;
 
+max-width:280px;
 
-/* Product cards */
+flex-shrink:0;
 
-#productList .card{
-
-min-width:260px;
-
-flex:0 0 auto;
+background:white;
 
 border-radius:25px;
 
 padding:18px;
 
-background:white;
+}
+
+
+
+#productList img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:20px;
 
 }
+
 
 
 /* Product image */

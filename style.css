@@ -3132,3 +3132,111 @@ padding:25px;
 margin-bottom:25px;
 
 }
+/* =========================
+ CUSTOMIZE HORIZONTAL CARDS
+========================= */
+
+
+#flowers,
+#colors,
+#wrappers,
+#addons{
+
+display:flex;
+
+flex-direction:row;
+
+gap:15px;
+
+overflow-x:auto;
+
+padding:15px 5px;
+
+scroll-behavior:smooth;
+
+}
+
+
+
+#flowers::-webkit-scrollbar,
+#colors::-webkit-scrollbar,
+#wrappers::-webkit-scrollbar,
+#addons::-webkit-scrollbar{
+
+height:5px;
+
+}
+
+
+
+#flowers > div,
+#colors > div,
+#wrappers > div,
+#addons > div{
+
+min-width:180px;
+
+max-width:180px;
+
+background:white;
+
+border-radius:22px;
+
+padding:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.05);
+
+}
+
+
+
+#flowers button,
+#colors button,
+#wrappers button,
+#addons button{
+
+border:none;
+
+background:#d98aaa;
+
+color:white;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+font-size:12px;
+
+margin-top:10px;
+
+}
+
+
+
+.customize-tabs{
+
+display:flex;
+
+gap:10px;
+
+overflow-x:auto;
+
+margin-bottom:15px;
+
+}
+
+
+
+.customize-tabs button{
+
+border:none;
+
+background:#e6a2bb;
+
+color:white;
+
+padding:10px 20px;
+
+border-radius:25px;
+
+}

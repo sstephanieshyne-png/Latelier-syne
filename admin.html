@@ -53,8 +53,38 @@ Add Flower
 </div>
 
 <div class="panel">
+
 <h2>Orders</h2>
+
+
+<div class="order-tabs">
+
+<button onclick="filterOrders('All')">
+All Orders
+</button>
+
+<button onclick="filterOrders('Pending')">
+Pending
+</button>
+
+<button onclick="filterOrders('Preparing')">
+Preparing
+</button>
+
+<button onclick="filterOrders('Ready for Delivery')">
+Ready
+</button>
+
+<button onclick="filterOrders('Completed')">
+Completed
+</button>
+
+</div>
+
+
 <div id="orderList"></div>
+
+
 </div>
 
 <script type="module" src="admin.js"></script>

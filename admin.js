@@ -608,32 +608,43 @@ orderList.innerHTML += `
 
 function updateOrderCounts(){
 
-document.getElementById("countAll").innerHTML =
-allOrders.length;
+let countAll = document.getElementById("countAll");
+let countPending = document.getElementById("countPending");
+let countPreparing = document.getElementById("countPreparing");
+let countReady = document.getElementById("countReady");
+let countCompleted = document.getElementById("countCompleted");
 
 
-document.getElementById("countPending").innerHTML =
+if(countAll)
+countAll.innerHTML = allOrders.length;
+
+
+if(countPending)
+countPending.innerHTML =
 allOrders.filter(
 order =>
 (order.status || "Pending") === "Pending"
 ).length;
 
 
-document.getElementById("countPreparing").innerHTML =
+if(countPreparing)
+countPreparing.innerHTML =
 allOrders.filter(
 order =>
 order.status === "Preparing"
 ).length;
 
 
-document.getElementById("countReady").innerHTML =
+if(countReady)
+countReady.innerHTML =
 allOrders.filter(
 order =>
 order.status === "Ready for Delivery"
 ).length;
 
 
-document.getElementById("countCompleted").innerHTML =
+if(countCompleted)
+countCompleted.innerHTML =
 allOrders.filter(
 order =>
 order.status === "Completed"

@@ -540,7 +540,9 @@ Completed
 
 
 </div>
+});
 
+}
 
 window.filterOrders = function(status){
 

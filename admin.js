@@ -392,7 +392,7 @@ id:item.id,
 
 });
 
-
+updateOrderCounts();
 displayOrders();
 
 
@@ -546,10 +546,43 @@ Completed
 window.filterOrders = function(status){
 
 currentFilter = status;
-
+updateOrderCounts();
 displayOrders();
+function updateOrderCounts(){
+
+document.getElementById("countAll").innerHTML =
+allOrders.length;
+
+
+document.getElementById("countPending").innerHTML =
+allOrders.filter(
+order =>
+(order.status || "Pending") === "Pending"
+).length;
+
+
+document.getElementById("countPreparing").innerHTML =
+allOrders.filter(
+order =>
+order.status === "Preparing"
+).length;
+
+
+document.getElementById("countReady").innerHTML =
+allOrders.filter(
+order =>
+order.status === "Ready for Delivery"
+).length;
+
+
+document.getElementById("countCompleted").innerHTML =
+allOrders.filter(
+order =>
+order.status === "Completed"
+).length;
 
 }
+
 // ======================
 // UPDATE ORDER STATUS
 // ======================

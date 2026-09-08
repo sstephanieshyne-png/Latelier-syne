@@ -528,25 +528,20 @@ let cart =
 JSON.parse(localStorage.getItem("cart")) || [];
 
 
-
 function addToCart(product){
 
+  cart.push(product);
 
-cart.push(product);
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
 
+  showCart();
 
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
-
-
-showToast("🌸 Added to cart");
-
+  showToast("🌸 Added to cart");
 
 }
-
-
 
 window.addToCart =
 addToCart;
@@ -967,6 +962,21 @@ showCart();
 // EXPORT
 // ======================
 
+function goCheckout(){
+
+  if(cart.length === 0){
+    showToast("🌸 Your cart is empty");
+    return;
+  }
+
+  document.getElementById("orderDetails")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+window.goCheckout = goCheckout;
 
 window.submitOrder =
 submitOrder;
